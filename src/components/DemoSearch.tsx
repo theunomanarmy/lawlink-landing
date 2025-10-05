@@ -13,7 +13,7 @@ const locationOptions = [
   "Munich",
   "Frankfurt",
   "Stuttgart",
-  "Düsseldorf",
+  "Dusseldorf",
 ];
 
 const specialtyOptions = [
@@ -95,7 +95,7 @@ export default function DemoSearch() {
   };
 
   return (
-    <section id="demo" className="space-y-8">
+    <section id="demo" className="container mx-auto space-y-8 px-4 py-16">
       <header className="space-y-3 text-center">
         <span className="text-xs font-semibold uppercase tracking-wide text-accent">
           Live search demo
@@ -108,12 +108,12 @@ export default function DemoSearch() {
         </p>
       </header>
 
-      <div className="rounded-[32px] border border-border bg-surface/80 p-6 shadow-soft">
+      <div className="rounded-2xl border border-border bg-surface/80 p-6 shadow-soft">
         <div className="grid gap-4 md:grid-cols-3">
           <label className="flex items-center gap-2 rounded-full border border-border bg-background px-4 py-3 text-sm">
             <span className="text-muted">Location</span>
             <select
-              className="flex-1 appearance-none bg-transparent text-foreground outline-none"
+              className="flex-1 appearance-none bg-transparent text-foreground outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               value={location}
               onChange={(event) => handleFilterChange("location", event.target.value)}
             >
@@ -127,7 +127,7 @@ export default function DemoSearch() {
           <label className="flex items-center gap-2 rounded-full border border-border bg-background px-4 py-3 text-sm">
             <span className="text-muted">Specialty</span>
             <select
-              className="flex-1 appearance-none bg-transparent text-foreground outline-none"
+              className="flex-1 appearance-none bg-transparent text-foreground outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               value={specialty}
               onChange={(event) => handleFilterChange("specialty", event.target.value)}
             >
@@ -141,7 +141,7 @@ export default function DemoSearch() {
           <label className="flex items-center gap-2 rounded-full border border-border bg-background px-4 py-3 text-sm">
             <span className="text-muted">Language</span>
             <select
-              className="flex-1 appearance-none bg-transparent text-foreground outline-none"
+              className="flex-1 appearance-none bg-transparent text-foreground outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               value={language}
               onChange={(event) => handleFilterChange("language", event.target.value)}
             >
@@ -154,11 +154,11 @@ export default function DemoSearch() {
           </label>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
+        <div className="mt-6 grid gap-4 md:grid-cols-2" role="status" aria-live="polite">
           {isLoading ? (
             <p className="col-span-full text-center text-sm text-muted">Loading sample profiles…</p>
           ) : error ? (
-            <p className="col-span-full rounded-3xl border border-dashed border-border bg-background/60 p-6 text-center text-sm text-muted">
+            <p className="col-span-full rounded-2xl border border-dashed border-border bg-background/60 p-6 text-center text-sm text-muted">
               {error}
             </p>
           ) : filteredLawyers.length > 0 ? (
@@ -170,7 +170,7 @@ export default function DemoSearch() {
               />
             ))
           ) : (
-            <p className="col-span-full rounded-3xl border border-dashed border-border bg-background/60 p-6 text-center text-sm text-muted">
+            <p className="col-span-full rounded-2xl border border-dashed border-border bg-background/60 p-6 text-center text-sm text-muted">
               No matches yet. Try adjusting filters to see more results.
             </p>
           )}

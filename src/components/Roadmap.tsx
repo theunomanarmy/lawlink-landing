@@ -26,7 +26,7 @@ const statusCopy: Record<RoadmapItem["status"], string> = {
 
 export default function Roadmap() {
   return (
-    <section className="space-y-8">
+    <section className="container mx-auto space-y-8 px-4 py-16">
       <header className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
           Shipping fast with a clear roadmap
@@ -48,7 +48,7 @@ export default function Roadmap() {
                 <p className="mt-1 text-lg font-semibold text-foreground">{item.quarter}</p>
               </div>
               <div className="hidden h-4 w-4 rounded-full border-2 border-accent bg-background md:block" />
-              <div className="rounded-3xl border border-border bg-surface/80 p-5 text-sm text-muted shadow-soft">
+              <div className="rounded-2xl border border-border bg-surface/80 p-5 text-sm text-muted shadow-soft">
                 {item.summary}
               </div>
             </div>

@@ -15,7 +15,7 @@
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="space-y-10">
+    <section id="how-it-works" className="container mx-auto space-y-10 px-4 py-16">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
           How it works in three simple steps
@@ -28,7 +28,7 @@ export default function HowItWorks() {
         {steps.map((step) => (
           <div
             key={step.title}
-            className="rounded-3xl border border-border bg-surface/80 p-6 text-left shadow-soft"
+            className="rounded-2xl border border-border bg-surface/80 p-6 text-left shadow-soft"
           >
             <h3 className="text-lg font-semibold">{step.title}</h3>
             <p className="mt-3 text-sm text-muted">{step.description}</p>

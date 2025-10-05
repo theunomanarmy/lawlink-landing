@@ -6,7 +6,7 @@
 
 export default function Security() {
   return (
-    <section id="security" className="space-y-8">
+    <section id="security" className="container mx-auto space-y-8 px-4 py-16">
       <header className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
           Compliance & security at the core.
@@ -15,7 +15,7 @@ export default function Security() {
           LawLink is built to keep legal data protected while making collaboration effortless.
         </p>
       </header>
-      <div className="mx-auto max-w-3xl rounded-3xl border border-border bg-surface/80 p-8 shadow-soft">
+      <div className="mx-auto max-w-3xl rounded-2xl border border-border bg-surface/80 p-8 shadow-soft">
         <ul className="space-y-3 text-sm text-muted">
           {bullets.map((bullet) => (
             <li key={bullet} className="flex gap-3">

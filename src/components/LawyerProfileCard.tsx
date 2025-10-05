@@ -11,7 +11,8 @@ interface LawyerProfileCardProps {
 }
 
 export default function LawyerProfileCard({ lawyer, className, onView }: LawyerProfileCardProps) {
-  const baseClasses = "rounded-3xl border border-border bg-background/90 p-5 shadow-soft transition hover:-translate-y-0.5";
+  const baseClasses =
+    "rounded-2xl border border-border bg-background/90 p-5 shadow-soft transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent";
 
   const handleCardClick = () => {
     onView?.(lawyer);
@@ -27,7 +28,7 @@ export default function LawyerProfileCard({ lawyer, className, onView }: LawyerP
   const handleBookClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     track("book_click", { id: lawyer.id });
-    window.alert("Launching soon—leave your email to get matched.");
+    window.alert("Launching soon — leave your email to get matched.");
   };
 
   return (
@@ -37,6 +38,7 @@ export default function LawyerProfileCard({ lawyer, className, onView }: LawyerP
       tabIndex={0}
       onClick={handleCardClick}
       onKeyDown={handleKeyDown}
+      aria-label={`View profile for ${lawyer.name}`}
     >
       <div className="flex items-start justify-between gap-3">
         <div>
@@ -72,7 +74,7 @@ export default function LawyerProfileCard({ lawyer, className, onView }: LawyerP
       <div className="mt-5 flex justify-end">
         <button
           type="button"
-          className="rounded-full border border-border px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft"
+          className="rounded-full border border-border px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           onClick={handleBookClick}
         >
           Book intro call
