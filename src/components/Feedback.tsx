@@ -22,10 +22,10 @@ export default function Feedback() {
     setStatus("sending");
     setResponseMessage("");
     try {
-      const res = await fetch("/api/feedback", {
+      const res = await fetch("/api/notify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ kind: "feedback", ...form }),
       });
       const json = await res.json();
       if (!res.ok || !json.ok) {
@@ -91,3 +91,4 @@ export default function Feedback() {
     </section>
   );
 }
+
