@@ -12,10 +12,43 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://lawlink.ai";
+const siteTitle = "LawLink | AI-first legal talent network";
+const siteDescription =
+  "Discover vetted legal experts faster with LawLink — the GDPR-first marketplace connecting clients and independent legal professionals.";
+
 export const metadata: Metadata = {
-  title: "LawLink | AI-first legal talent network",
-  description:
-    "Discover vetted legal experts and collaborate through the LawLink AI co-counsel marketplace.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: "%s | LawLink",
+  },
+  description: siteDescription,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
+    siteName: "LawLink",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: `${siteUrl}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: "LawLink legal marketplace preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: [`${siteUrl}/og-image.png`],
+  },
 };
 
 export default function RootLayout({
