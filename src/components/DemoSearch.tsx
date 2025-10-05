@@ -1,44 +1,101 @@
 ﻿"use client";
 
-import { useMemo, useState } from "react";
-import { Search } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 import LawyerProfileCard from "@/components/LawyerProfileCard";
+import { track } from "@/lib/track";
 import type { Lawyer } from "@/lib/types";
-import demoLawyers from "@/../public/demo-lawyers.json";
 
-const lawyers = demoLawyers as Lawyer[];
+const locationOptions = [
+  "All",
+  "Berlin",
+  "Hamburg",
+  "Cologne",
+  "Munich",
+  "Frankfurt",
+  "Stuttgart",
+  "Düsseldorf",
+];
+
+const specialtyOptions = [
+  "All",
+  "Family Law",
+  "Criminal Law",
+  "Employment Law",
+  "Immigration",
+  "Corporate",
+];
+
+const languageOptions = ["All", "DE", "EN", "TR", "AR", "NL"];
 
 export default function DemoSearch() {
-  const [query, setQuery] = useState("");
-  const [specialty, setSpecialty] = useState("All");
-  const [onlyVerified, setOnlyVerified] = useState(false);
+  const [lawyers, setLawyers] = useState<Lawyer[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [location, setLocation] = useState<string>(locationOptions[0]);
+  const [specialty, setSpecialty] = useState<string>(specialtyOptions[0]);
+  const [language, setLanguage] = useState<string>(languageOptions[0]);
 
-  const specialties = useMemo(() => {
-    const unique = new Set<string>();
-    lawyers.forEach((lawyer) => unique.add(lawyer.specialty));
-    return ["All", ...Array.from(unique).sort()];
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadLawyers() {
+      try {
+        const response = await fetch("/demo-lawyers.json");
+        if (!response.ok) {
+          throw new Error(`Failed to load demo lawyers (${response.status})`);
+        }
+        const data = (await response.json()) as Lawyer[];
+        if (isMounted) {
+          setLawyers(data);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setError(err instanceof Error ? err.message : "Unable to load demo data");
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    }
+
+    loadLawyers();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const filteredLawyers = useMemo(() => {
     return lawyers.filter((lawyer) => {
-      if (specialty !== "All" && lawyer.specialty !== specialty) {
-        return false;
-      }
-      if (onlyVerified && !lawyer.verified) {
-        return false;
-      }
+      const matchesLocation =
+        location === "All" || lawyer.location.toLowerCase().includes(location.toLowerCase());
+      const matchesSpecialty =
+        specialty === "All" || lawyer.specialty.toLowerCase() === specialty.toLowerCase();
+      const matchesLanguage =
+        language === "All" || lawyer.languages.includes(language.toUpperCase());
 
-      if (!query) {
-        return true;
-      }
-
-      const haystack = `${lawyer.name} ${lawyer.specialty} ${lawyer.location} ${lawyer.languages.join(",")}`.toLowerCase();
-      return haystack.includes(query.toLowerCase());
+      return matchesLocation && matchesSpecialty && matchesLanguage;
     });
-  }, [onlyVerified, query, specialty]);
+  }, [language, lawyers, location, specialty]);
+
+  const handleFilterChange = (filter: "location" | "specialty" | "language", value: string) => {
+    track("demo_filter_change", { filter, value });
+    switch (filter) {
+      case "location":
+        setLocation(value);
+        break;
+      case "specialty":
+        setSpecialty(value);
+        break;
+      case "language":
+        setLanguage(value);
+        break;
+    }
+  };
 
   return (
-    <div className="space-y-8">
+    <section id="demo" className="space-y-8">
       <header className="space-y-3 text-center">
         <span className="text-xs font-semibold uppercase tracking-wide text-accent">
           Live search demo
@@ -47,59 +104,78 @@ export default function DemoSearch() {
           Explore verified German legal specialists
         </h2>
         <p className="mx-auto max-w-2xl text-base text-muted">
-          Filter by specialty, verification status, or keyword to preview how LawLink surfaces the right expertise.
-          Production data includes deeper compliance signals and live availability.
+          Filter by location, specialty, and language to see how LawLink keeps the marketplace transparent and GDPR-first.
         </p>
       </header>
 
       <div className="rounded-[32px] border border-border bg-surface/80 p-6 shadow-soft">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center">
-          <label className="relative flex-1">
-            <span className="sr-only">Search by keyword</span>
-            <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
-            <input
-              className="w-full rounded-full border border-border bg-background px-12 py-3 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/40"
-              placeholder="Search by name, city, or language"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-            />
-          </label>
-          <label className="flex w-full items-center gap-2 rounded-full border border-border bg-background px-4 py-3 text-sm md:w-64">
-            <span className="text-muted">Specialty</span>
+        <div className="grid gap-4 md:grid-cols-3">
+          <label className="flex items-center gap-2 rounded-full border border-border bg-background px-4 py-3 text-sm">
+            <span className="text-muted">Location</span>
             <select
               className="flex-1 appearance-none bg-transparent text-foreground outline-none"
-              value={specialty}
-              onChange={(event) => setSpecialty(event.target.value)}
+              value={location}
+              onChange={(event) => handleFilterChange("location", event.target.value)}
             >
-              {specialties.map((value) => (
-                <option key={value} value={value}>
-                  {value}
+              {locationOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
                 </option>
               ))}
             </select>
           </label>
-          <label className="flex w-full items-center justify-between gap-3 rounded-full border border-border bg-background px-4 py-3 text-sm md:w-60">
-            <span className="text-muted">Verified only</span>
-            <input
-              type="checkbox"
-              className="h-4 w-4"
-              checked={onlyVerified}
-              onChange={(event) => setOnlyVerified(event.target.checked)}
-            />
+          <label className="flex items-center gap-2 rounded-full border border-border bg-background px-4 py-3 text-sm">
+            <span className="text-muted">Specialty</span>
+            <select
+              className="flex-1 appearance-none bg-transparent text-foreground outline-none"
+              value={specialty}
+              onChange={(event) => handleFilterChange("specialty", event.target.value)}
+            >
+              {specialtyOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="flex items-center gap-2 rounded-full border border-border bg-background px-4 py-3 text-sm">
+            <span className="text-muted">Language</span>
+            <select
+              className="flex-1 appearance-none bg-transparent text-foreground outline-none"
+              value={language}
+              onChange={(event) => handleFilterChange("language", event.target.value)}
+            >
+              {languageOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
           </label>
         </div>
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
-          {filteredLawyers.map((lawyer) => (
-            <LawyerProfileCard key={lawyer.id} lawyer={lawyer} />
-          ))}
-          {filteredLawyers.length === 0 ? (
+          {isLoading ? (
+            <p className="col-span-full text-center text-sm text-muted">Loading sample profiles…</p>
+          ) : error ? (
             <p className="col-span-full rounded-3xl border border-dashed border-border bg-background/60 p-6 text-center text-sm text-muted">
-              No matches yet. Try broadening your filters to discover more talent.
+              {error}
             </p>
-          ) : null}
+          ) : filteredLawyers.length > 0 ? (
+            filteredLawyers.map((lawyer) => (
+              <LawyerProfileCard
+                key={lawyer.id}
+                lawyer={lawyer}
+                onView={(profile) => track("profile_view", { id: profile.id })}
+              />
+            ))
+          ) : (
+            <p className="col-span-full rounded-3xl border border-dashed border-border bg-background/60 p-6 text-center text-sm text-muted">
+              No matches yet. Try adjusting filters to see more results.
+            </p>
+          )}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
