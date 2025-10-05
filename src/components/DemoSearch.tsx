@@ -2,11 +2,11 @@
 
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
-import type { LawyerProfile } from "@/lib/types";
+import type { Lawyer } from "@/lib/types";
 import LawyerProfileCard from "@/components/LawyerProfileCard";
 
 interface DemoSearchProps {
-  lawyers: LawyerProfile[];
+  lawyers: Lawyer[];
 }
 
 export default function DemoSearch({ lawyers }: DemoSearchProps) {
@@ -48,8 +48,8 @@ export default function DemoSearch({ lawyers }: DemoSearchProps) {
           Explore verified German legal specialists
         </h2>
         <p className="mx-auto max-w-2xl text-base text-muted">
-          Filter by specialty, verification status, or keyword to preview how LawLink surfaces the right
-          expertise. Production data includes deeper compliance signals and live availability.
+          Filter by specialty, verification status, or keyword to preview how LawLink surfaces the right expertise.
+          Production data includes deeper compliance signals and live availability.
         </p>
       </header>
 

@@ -1,7 +1,7 @@
-﻿import type { LawyerProfile } from "@/lib/types";
+﻿import type { Lawyer } from "@/lib/types";
 
 interface LawyerProfileCardProps {
-  lawyer: LawyerProfile;
+  lawyer: Lawyer;
   className?: string;
 }
 

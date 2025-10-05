@@ -1,4 +1,4 @@
-﻿export interface LawyerProfile {
+﻿export type Lawyer = {
   id: string;
   name: string;
   specialty: string;
@@ -7,9 +7,9 @@
   languages: string[];
   verified: boolean;
   cases_anonymized: number;
-}
+};
 
-export interface PricingTier {
+export type PricingTier = {
   name: string;
   priceMonthly: string;
   description: string;
@@ -17,18 +17,18 @@ export interface PricingTier {
   ctaLabel: string;
   ctaHref: string;
   isPopular?: boolean;
-}
+};
 
-export interface RoadmapItem {
+export type RoadmapItem = {
   quarter: string;
   status: "in-progress" | "planned" | "done";
   summary: string;
-}
+};
 
-export interface FAQItem {
+export type FAQItem = {
   question: string;
   answer: string;
-}
+};
 
 export type AnalyticsEvent = {
   name: string;
