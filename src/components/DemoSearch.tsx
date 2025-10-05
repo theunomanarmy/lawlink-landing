@@ -8,31 +8,24 @@ import type { Lawyer } from "@/lib/types";
 const locationOptions = [
   "All",
   "Berlin",
-  "Hamburg",
-  "Cologne",
   "Munich",
+  "Hamburg",
   "Frankfurt",
+  "Cologne",
   "Stuttgart",
   "Dusseldorf",
+  "Leipzig",
 ];
 
-const specialtyOptions = [
-  "All",
-  "Family Law",
-  "Criminal Law",
-  "Employment Law",
-  "Immigration",
-  "Corporate",
-];
-
-const languageOptions = ["All", "DE", "EN", "TR", "AR", "NL"];
+const specialtyOptions = ["Corporate", "Financial", "Family", "Immigration", "Other"];
+const languageOptions = ["All", "German", "Arabic", "English"];
 
 export default function DemoSearch() {
   const [lawyers, setLawyers] = useState<Lawyer[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [location, setLocation] = useState<string>(locationOptions[0]);
-  const [specialty, setSpecialty] = useState<string>(specialtyOptions[0]);
+  const [selectedSpecialties, setSelectedSpecialties] = useState<string[]>([]);
   const [language, setLanguage] = useState<string>(languageOptions[0]);
 
   useEffect(() => {
@@ -69,29 +62,35 @@ export default function DemoSearch() {
   const filteredLawyers = useMemo(() => {
     return lawyers.filter((lawyer) => {
       const matchesLocation =
-        location === "All" || lawyer.location.toLowerCase().includes(location.toLowerCase());
+        location === "All" || lawyer.location.toLowerCase() === location.toLowerCase();
+
       const matchesSpecialty =
-        specialty === "All" || lawyer.specialty.toLowerCase() === specialty.toLowerCase();
+        selectedSpecialties.length === 0 || selectedSpecialties.includes(lawyer.specialty);
+
       const matchesLanguage =
-        language === "All" || lawyer.languages.includes(language.toUpperCase());
+        language === "All" || lawyer.languages.some((lang) => lang.toLowerCase() === language.toLowerCase());
 
       return matchesLocation && matchesSpecialty && matchesLanguage;
     });
-  }, [language, lawyers, location, specialty]);
+  }, [language, lawyers, location, selectedSpecialties]);
 
-  const handleFilterChange = (filter: "location" | "specialty" | "language", value: string) => {
-    track("demo_filter_change", { filter, value });
-    switch (filter) {
-      case "location":
-        setLocation(value);
-        break;
-      case "specialty":
-        setSpecialty(value);
-        break;
-      case "language":
-        setLanguage(value);
-        break;
-    }
+  const handleSpecialtyToggle = (value: string) => {
+    setSelectedSpecialties((current) => {
+      const exists = current.includes(value);
+      const next = exists ? current.filter((item) => item !== value) : [...current, value];
+      track("demo_filter_change", { filter: "specialty", value: next.join(",") || "All" });
+      return next;
+    });
+  };
+
+  const handleLocationChange = (value: string) => {
+    setLocation(value);
+    track("demo_filter_change", { filter: "location", value });
+  };
+
+  const handleLanguageChange = (value: string) => {
+    setLanguage(value);
+    track("demo_filter_change", { filter: "language", value });
   };
 
   return (
@@ -104,18 +103,18 @@ export default function DemoSearch() {
           Explore verified German legal specialists
         </h2>
         <p className="mx-auto max-w-2xl text-base text-muted">
-          Filter by location, specialty, and language to see how LawLink keeps the marketplace transparent and GDPR-first.
+          Filter by location, specialty, and language to see how LawLink keeps the marketplace transparent.
         </p>
       </header>
 
       <div className="rounded-2xl border border-border bg-surface/80 p-6 shadow-soft">
-        <div className="grid gap-4 md:grid-cols-3">
-          <label className="flex items-center gap-2 rounded-full border border-border bg-background px-4 py-3 text-sm">
-            <span className="text-muted">Location</span>
+        <div className="grid gap-6 md:grid-cols-3">
+          <label className="flex flex-col gap-2 text-left text-sm font-semibold text-foreground">
+            <span>Location</span>
             <select
-              className="flex-1 appearance-none bg-transparent text-foreground outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className="rounded-full border border-border bg-background px-4 py-3 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               value={location}
-              onChange={(event) => handleFilterChange("location", event.target.value)}
+              onChange={(event) => handleLocationChange(event.target.value)}
             >
               {locationOptions.map((option) => (
                 <option key={option} value={option}>
@@ -124,26 +123,31 @@ export default function DemoSearch() {
               ))}
             </select>
           </label>
-          <label className="flex items-center gap-2 rounded-full border border-border bg-background px-4 py-3 text-sm">
-            <span className="text-muted">Specialty</span>
+          <fieldset className="space-y-2 text-left text-sm text-foreground">
+            <legend className="font-semibold">Specialties</legend>
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {specialtyOptions.map((option) => {
+                const checked = selectedSpecialties.includes(option);
+                return (
+                  <label key={option} className="inline-flex items-center gap-2 text-muted">
+                    <input
+                      type="checkbox"
+                      className="h-4 w-4 rounded border-border text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                      checked={checked}
+                      onChange={() => handleSpecialtyToggle(option)}
+                    />
+                    <span className="text-sm text-foreground">{option}</span>
+                  </label>
+                );
+              })}
+            </div>
+          </fieldset>
+          <label className="flex flex-col gap-2 text-left text-sm font-semibold text-foreground">
+            <span>Language</span>
             <select
-              className="flex-1 appearance-none bg-transparent text-foreground outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-              value={specialty}
-              onChange={(event) => handleFilterChange("specialty", event.target.value)}
-            >
-              {specialtyOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="flex items-center gap-2 rounded-full border border-border bg-background px-4 py-3 text-sm">
-            <span className="text-muted">Language</span>
-            <select
-              className="flex-1 appearance-none bg-transparent text-foreground outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className="rounded-full border border-border bg-background px-4 py-3 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               value={language}
-              onChange={(event) => handleFilterChange("language", event.target.value)}
+              onChange={(event) => handleLanguageChange(event.target.value)}
             >
               {languageOptions.map((option) => (
                 <option key={option} value={option}>

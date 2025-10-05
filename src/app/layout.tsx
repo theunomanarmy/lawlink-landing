@@ -13,9 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 const siteUrl = "https://lawlink.ai";
-const siteTitle = "LawLink | AI-first legal talent network";
-const siteDescription =
-  "Discover vetted legal experts faster with LawLink — the GDPR-first marketplace connecting clients and independent legal professionals.";
+const siteTitle = "lawlink";
+const siteDescription = "Community, security, and simplicity for legal professionals and clients.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -64,3 +63,4 @@ export default function RootLayout({
     </html>
   );
 }
+

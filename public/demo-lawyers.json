@@ -1,5 +1,12 @@
 ﻿[
-  { "id":"l1", "name":"Dr. Anna Keller", "specialty":"Family Law", "years":8, "location":"Berlin", "languages":["DE","EN"], "verified":true, "cases_anonymized":124 },
-  { "id":"l2", "name":"Jonas Richter", "specialty":"Employment Law", "years":5, "location":"Hamburg", "languages":["DE"], "verified":false, "cases_anonymized":76 },
-  { "id":"l3", "name":"Miriam Özdemir", "specialty":"Immigration", "years":6, "location":"Cologne", "languages":["DE","TR","EN"], "verified":true, "cases_anonymized":91 }
+  { "id": "lawyer-01", "name": "Dr. Lena Hoffmann", "specialty": "Corporate", "years": 12, "location": "Berlin", "languages": ["German", "English"], "verified": true, "cases_anonymized": 240 },
+  { "id": "lawyer-02", "name": "Karim El-Sayed", "specialty": "Immigration", "years": 9, "location": "Munich", "languages": ["Arabic", "German", "English"], "verified": true, "cases_anonymized": 180 },
+  { "id": "lawyer-03", "name": "Julia Brandt", "specialty": "Financial", "years": 7, "location": "Frankfurt", "languages": ["German", "English"], "verified": false, "cases_anonymized": 95 },
+  { "id": "lawyer-04", "name": "Samira Haddad", "specialty": "Family", "years": 10, "location": "Hamburg", "languages": ["German", "Arabic"], "verified": true, "cases_anonymized": 160 },
+  { "id": "lawyer-05", "name": "Paul Schneider", "specialty": "Corporate", "years": 6, "location": "Stuttgart", "languages": ["German"], "verified": false, "cases_anonymized": 70 },
+  { "id": "lawyer-06", "name": "Mina Farah", "specialty": "Immigration", "years": 8, "location": "Cologne", "languages": ["English", "Arabic"], "verified": true, "cases_anonymized": 120 },
+  { "id": "lawyer-07", "name": "Jonas Weber", "specialty": "Other", "years": 5, "location": "Leipzig", "languages": ["German"], "verified": true, "cases_anonymized": 88 },
+  { "id": "lawyer-08", "name": "Aylin Demir", "specialty": "Financial", "years": 11, "location": "Dusseldorf", "languages": ["German", "English", "Arabic"], "verified": true, "cases_anonymized": 210 },
+  { "id": "lawyer-09", "name": "Felix Kramer", "specialty": "Family", "years": 4, "location": "Berlin", "languages": ["German", "English"], "verified": false, "cases_anonymized": 60 },
+  { "id": "lawyer-10", "name": "Nadia Rahman", "specialty": "Corporate", "years": 13, "location": "Munich", "languages": ["English", "German"], "verified": true, "cases_anonymized": 265 }
 ]

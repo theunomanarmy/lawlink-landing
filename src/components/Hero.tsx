@@ -1,9 +1,4 @@
-﻿import Link from "next/link";
-import { track } from "@/lib/track";
-
-const waitlistHref = "mailto:hello@lawlink.ai?subject=LawLink%20Early%20Access";
-
-export default function Hero() {
+﻿export default function Hero() {
   return (
     <section
       id="hero"
@@ -11,27 +6,9 @@ export default function Hero() {
     >
       <div className="space-y-7">
         <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
-          Find the right lawyer. Fast, transparent, and secure.
+          a platform dedicated to the letter of the law
         </h1>
-        <p className="text-lg text-muted sm:text-xl">
-          A dedicated network for legal professionals and clients — no hidden fees, GDPR-first.
-        </p>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <a
-            href={waitlistHref}
-            className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-base font-semibold text-white shadow-soft transition hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-            onClick={() => track("cta_get_early_access")}
-          >
-            Get Early Access
-          </a>
-          <Link
-            href="#demo"
-            className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-base font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-            onClick={() => track("cta_try_demo")}
-          >
-            Explore the demo
-          </Link>
-        </div>
+        <p className="text-lg text-muted sm:text-xl">Community, security, and simplicity.</p>
         <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-medium sm:justify-start">
           {[
             "GDPR-first",

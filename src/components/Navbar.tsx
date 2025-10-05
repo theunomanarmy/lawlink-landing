@@ -5,12 +5,12 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
+  { href: "#demo", label: "Live search" },
   { href: "#features", label: "Features" },
-  { href: "#demo", label: "For Lawyers" },
-  { href: "#for-clients", label: "For Clients" },
-  { href: "#security", label: "Security/GDPR" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#faq", label: "FAQ" },
+  { href: "#bmc", label: "Model" },
+  { href: "#traction", label: "Traction" },
+  { href: "#for-clients", label: "Why us" },
+  { href: "#feedback", label: "Feedback" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -79,3 +79,4 @@ export default function Navbar() {
     </header>
   );
 }
+
