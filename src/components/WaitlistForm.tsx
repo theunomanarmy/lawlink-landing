@@ -2,28 +2,44 @@
 
 import { FormEvent, useState } from "react";
 
-const recipient = "ahmadazzeh04@gmail.com";
+const defaultState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  address: "",
+};
 
 export default function WaitlistForm() {
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-  });
+  const [form, setForm] = useState(defaultState);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [message, setMessage] = useState<string>("");
 
   const updateField = (field: keyof typeof form) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({ ...prev, [field]: event.target.value }));
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const subject = encodeURIComponent("LawLink waiting list");
-    const body = encodeURIComponent(
-      `First name: ${form.firstName}\nLast name: ${form.lastName}\nEmail: ${form.email}\nPhone: ${form.phone}\nAddress: ${form.address}`
-    );
-    window.open(`mailto:${recipient}?subject=${subject}&body=${body}`, "_blank");
+    setStatus("sending");
+    setMessage("");
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const json = await response.json();
+      if (!response.ok || !json.ok) {
+        throw new Error(json.error || "Failed to submit");
+      }
+      setStatus("sent");
+      setMessage("Thanks! We'll be in touch soon.");
+      setForm(defaultState);
+    } catch (error) {
+      setStatus("error");
+      setMessage((error as Error).message || "Something went wrong.");
+    }
   };
 
   return (
@@ -75,11 +91,17 @@ export default function WaitlistForm() {
           className="rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         />
       </label>
+      {status !== "idle" ? (
+        <p className={`text-sm ${status === "error" ? "text-red-500" : "text-muted"}`}>
+          {message}
+        </p>
+      ) : null}
       <button
         type="submit"
-        className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+        disabled={status === "sending"}
+        className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-70"
       >
-        Send details
+        {status === "sending" ? "Sending…" : "Send details"}
       </button>
     </form>
   );

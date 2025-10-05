@@ -2,17 +2,42 @@
 
 import { FormEvent, useState } from "react";
 
-const feedbackRecipient = "ahmadazzeh04@gmail.com";
+const defaultFeedback = {
+  email: "",
+  message: "",
+};
 
 export default function Feedback() {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [form, setForm] = useState(defaultFeedback);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [responseMessage, setResponseMessage] = useState("");
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleChange = (field: keyof typeof form) =>
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setForm((prev) => ({ ...prev, [field]: event.target.value }));
+    };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const subject = encodeURIComponent("LawLink feedback");
-    const body = encodeURIComponent(`From: ${email}\n\n${message}`);
-    window.open(`mailto:${feedbackRecipient}?subject=${subject}&body=${body}`, "_blank");
+    setStatus("sending");
+    setResponseMessage("");
+    try {
+      const res = await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.ok) {
+        throw new Error(json.error || "Failed to submit feedback.");
+      }
+      setStatus("sent");
+      setResponseMessage("Thanks for sharing your thoughts!");
+      setForm(defaultFeedback);
+    } catch (error) {
+      setStatus("error");
+      setResponseMessage((error as Error).message || "Something went wrong.");
+    }
   };
 
   return (
@@ -34,8 +59,8 @@ export default function Feedback() {
           <input
             type="email"
             required
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            value={form.email}
+            onChange={handleChange("email")}
             className="rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             placeholder="you@example.com"
           />
@@ -44,17 +69,23 @@ export default function Feedback() {
           Comment
           <textarea
             required
-            value={message}
-            onChange={(event) => setMessage(event.target.value)}
+            value={form.message}
+            onChange={handleChange("message")}
             className="min-h-[140px] rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             placeholder="Tell us what you think"
           />
         </label>
+        {status !== "idle" ? (
+          <p className={`text-sm ${status === "error" ? "text-red-500" : "text-muted"}`}>
+            {responseMessage}
+          </p>
+        ) : null}
         <button
           type="submit"
-          className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          disabled={status === "sending"}
+          className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-70"
         >
-          Send feedback
+          {status === "sending" ? "Sending…" : "Send feedback"}
         </button>
       </form>
     </section>
