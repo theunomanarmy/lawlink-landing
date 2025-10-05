@@ -1,17 +1,12 @@
-﻿export type PracticeArea = string;
-
-export interface LawyerProfile {
+﻿export interface LawyerProfile {
   id: string;
   name: string;
-  firm: string;
+  specialty: string;
+  years: number;
   location: string;
-  practiceAreas: PracticeArea[];
-  yearsExperience: number;
-  rating: number;
   languages: string[];
-  description: string;
-  specialization: string;
-  email: string;
+  verified: boolean;
+  cases_anonymized: number;
 }
 
 export interface PricingTier {

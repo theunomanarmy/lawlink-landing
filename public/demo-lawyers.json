@@ -1,54 +1,5 @@
 ﻿[
-  {
-    "id": "lawyer-amelia-hart",
-    "name": "Amelia Hart",
-    "firm": "Hart & Finch LLP",
-    "location": "Austin, TX",
-    "practiceAreas": ["Family Law", "Mediation"],
-    "yearsExperience": 12,
-    "rating": 4.8,
-    "languages": ["English", "Spanish"],
-    "description": "Guides families through complex custody and mediation cases with a focus on empathy and clear communication.",
-    "specialization": "Family & Custody",
-    "email": "amelia.hart@hartfinch.com"
-  },
-  {
-    "id": "lawyer-malcolm-cho",
-    "name": "Malcolm Cho",
-    "firm": "Cho Legal Collective",
-    "location": "San Francisco, CA",
-    "practiceAreas": ["Startup Law", "Commercial Contracts"],
-    "yearsExperience": 9,
-    "rating": 4.7,
-    "languages": ["English", "Korean"],
-    "description": "Advises venture-backed startups on fundraising, commercial agreements, and go-to-market compliance.",
-    "specialization": "Startup Counsel",
-    "email": "malcolm@cholegal.co"
-  },
-  {
-    "id": "lawyer-samira-al-khatib",
-    "name": "Samira Al-Khatib",
-    "firm": "Atlas Human Rights",
-    "location": "Washington, DC",
-    "practiceAreas": ["Immigration", "Human Rights"],
-    "yearsExperience": 15,
-    "rating": 4.9,
-    "languages": ["English", "Arabic"],
-    "description": "Leads impact litigation and humanitarian parole cases for displaced professionals and their families.",
-    "specialization": "Immigration & Human Rights",
-    "email": "samira@atlasrights.org"
-  },
-  {
-    "id": "lawyer-diego-fernandez",
-    "name": "Diego Fernandez",
-    "firm": "Fernandez Data Law",
-    "location": "Miami, FL",
-    "practiceAreas": ["Data Privacy", "Cybersecurity"],
-    "yearsExperience": 11,
-    "rating": 4.6,
-    "languages": ["English", "Spanish", "Portuguese"],
-    "description": "Supports growth-stage SaaS companies with global privacy compliance and incident readiness.",
-    "specialization": "Privacy & Cybersecurity",
-    "email": "diego@fdatalaw.com"
-  }
+  { "id":"l1", "name":"Dr. Anna Keller", "specialty":"Family Law", "years":8, "location":"Berlin", "languages":["DE","EN"], "verified":true, "cases_anonymized":124 },
+  { "id":"l2", "name":"Jonas Richter", "specialty":"Employment Law", "years":5, "location":"Hamburg", "languages":["DE"], "verified":false, "cases_anonymized":76 },
+  { "id":"l3", "name":"Miriam Özdemir", "specialty":"Immigration", "years":6, "location":"Cologne", "languages":["DE","TR","EN"], "verified":true, "cases_anonymized":91 }
 ]
