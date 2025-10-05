@@ -18,7 +18,7 @@
 
 export default function WhyUsInvest() {
   return (
-    <section className="space-y-8">
+    <section id="for-clients" className="space-y-8">
       <header className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
           Why teams and investors are betting on LawLink
