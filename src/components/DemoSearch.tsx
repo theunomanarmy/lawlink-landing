@@ -2,14 +2,13 @@
 
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
-import type { Lawyer } from "@/lib/types";
 import LawyerProfileCard from "@/components/LawyerProfileCard";
+import type { Lawyer } from "@/lib/types";
+import demoLawyers from "@/../public/demo-lawyers.json";
 
-interface DemoSearchProps {
-  lawyers: Lawyer[];
-}
+const lawyers = demoLawyers as Lawyer[];
 
-export default function DemoSearch({ lawyers }: DemoSearchProps) {
+export default function DemoSearch() {
   const [query, setQuery] = useState("");
   const [specialty, setSpecialty] = useState("All");
   const [onlyVerified, setOnlyVerified] = useState(false);
@@ -18,7 +17,7 @@ export default function DemoSearch({ lawyers }: DemoSearchProps) {
     const unique = new Set<string>();
     lawyers.forEach((lawyer) => unique.add(lawyer.specialty));
     return ["All", ...Array.from(unique).sort()];
-  }, [lawyers]);
+  }, []);
 
   const filteredLawyers = useMemo(() => {
     return lawyers.filter((lawyer) => {
@@ -36,10 +35,10 @@ export default function DemoSearch({ lawyers }: DemoSearchProps) {
       const haystack = `${lawyer.name} ${lawyer.specialty} ${lawyer.location} ${lawyer.languages.join(",")}`.toLowerCase();
       return haystack.includes(query.toLowerCase());
     });
-  }, [lawyers, specialty, onlyVerified, query]);
+  }, [onlyVerified, query, specialty]);
 
   return (
-    <section id="demo" className="space-y-8">
+    <div className="space-y-8">
       <header className="space-y-3 text-center">
         <span className="text-xs font-semibold uppercase tracking-wide text-accent">
           Live search demo
@@ -101,6 +100,6 @@ export default function DemoSearch({ lawyers }: DemoSearchProps) {
           ) : null}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

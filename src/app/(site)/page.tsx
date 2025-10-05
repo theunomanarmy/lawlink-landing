@@ -1,4 +1,5 @@
-﻿import Hero from "@/components/Hero";
+﻿import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import DemoSearch from "@/components/DemoSearch";
 import Features from "@/components/Features";
@@ -8,24 +9,33 @@ import Pricing from "@/components/Pricing";
 import WhyUsInvest from "@/components/WhyUsInvest";
 import Roadmap from "@/components/Roadmap";
 import FAQ from "@/components/FAQ";
-import type { LawyerProfile } from "@/lib/types";
-import demoLawyers from "@/../public/demo-lawyers.json";
-
-const lawyers = demoLawyers as LawyerProfile[];
+import Footer from "@/components/Footer";
 
 export default function Page() {
   return (
-    <div className="space-y-20">
+    <main className="min-h-screen">
+      <Navbar />
       <Hero />
       <HowItWorks />
-      <DemoSearch lawyers={lawyers} />
-      <Features />
-      <Security />
-      <BmcCanvas />
-      <Pricing />
+      <section id="demo">
+        <DemoSearch />
+      </section>
+      <section id="features">
+        <Features />
+      </section>
+      <section id="security">
+        <Security />
+      </section>
+      <section id="bmc">
+        <BmcCanvas />
+      </section>
+      <section id="pricing">
+        <Pricing />
+      </section>
       <WhyUsInvest />
       <Roadmap />
       <FAQ />
-    </div>
+      <Footer />
+    </main>
   );
 }
