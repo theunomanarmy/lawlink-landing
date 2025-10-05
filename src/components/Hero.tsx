@@ -1,4 +1,5 @@
 ﻿import Link from "next/link";
+import { track } from "@/lib/track";
 
 const waitlistHref = "mailto:hello@lawlink.ai?subject=LawLink%20Early%20Access";
 
@@ -6,7 +7,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="gap-12 text-center sm:text-left lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:items-center"
+      className="container mx-auto grid gap-12 px-4 py-16 text-center sm:text-left lg:grid-cols-[1.1fr_0.9fr] lg:items-center"
     >
       <div className="space-y-7">
         <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
@@ -16,15 +17,17 @@ export default function Hero() {
           A dedicated network for legal professionals and clients — no hidden fees, GDPR-first.
         </p>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <Link
+          <a
             href={waitlistHref}
-            className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-base font-semibold text-white shadow-soft transition hover:opacity-95"
+            className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-base font-semibold text-white shadow-soft transition hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            onClick={() => track("cta_get_early_access")}
           >
             Get Early Access
-          </Link>
+          </a>
           <Link
             href="#demo"
-            className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-base font-semibold text-foreground transition hover:bg-accent-soft"
+            className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-base font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            onClick={() => track("cta_try_demo")}
           >
             Explore the demo
           </Link>
@@ -44,10 +47,10 @@ export default function Hero() {
           ))}
         </div>
       </div>
-      <div className="mx-auto hidden max-w-lg rounded-[32px] border border-border bg-surface/80 p-6 shadow-soft lg:block">
+      <div className="mx-auto hidden max-w-lg rounded-2xl border border-border bg-surface/80 p-6 shadow-soft lg:block">
         <div className="space-y-4 text-left">
           <p className="text-sm font-semibold text-muted">Active request overview</p>
-          <div className="rounded-3xl border border-border bg-background p-5">
+          <div className="rounded-2xl border border-border bg-background p-5">
             <p className="text-sm font-medium text-muted">Client brief</p>
             <p className="mt-2 text-base font-semibold">
               Relocation package for Berlin fintech team
@@ -56,7 +59,7 @@ export default function Hero() {
               Needs multilingual counsel to draft employment agreements and review relocation policies under German law.
             </p>
           </div>
-          <div className="rounded-3xl border border-border bg-background p-5">
+          <div className="rounded-2xl border border-border bg-background p-5">
             <p className="text-sm font-medium text-muted">Matching pipeline</p>
             <ul className="mt-3 space-y-3 text-sm">
               <li className="flex items-start justify-between">

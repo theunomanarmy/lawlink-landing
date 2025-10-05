@@ -1,4 +1,6 @@
-﻿const tiers = [
+﻿import { track } from "@/lib/track";
+
+const tiers = [
   {
     name: "Lawyers",
     price: "€30/mo (pilot)",
@@ -37,9 +39,13 @@
   },
 ];
 
+function buildMailto(plan: string) {
+  return `mailto:hello@lawlink.ai?subject=${encodeURIComponent(`LawLink ${plan} plan`)}`;
+}
+
 export default function Pricing() {
   return (
-    <section id="pricing" className="space-y-10">
+    <section id="pricing" className="container mx-auto space-y-10 px-4 py-16">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
           Pilot pricing designed for transparency
@@ -50,7 +56,7 @@ export default function Pricing() {
       </div>
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {tiers.map((tier) => (
-          <div key={tier.name} className="rounded-3xl border border-border bg-surface/80 p-6 shadow-soft">
+          <div key={tier.name} className="flex flex-col rounded-2xl border border-border bg-surface/80 p-6 shadow-soft">
             <h3 className="text-xl font-semibold">{tier.name}</h3>
             <p className="mt-2 text-2xl font-semibold text-foreground">{tier.price}</p>
             <ul className="mt-4 space-y-2 text-sm text-muted">
@@ -61,6 +67,13 @@ export default function Pricing() {
                 </li>
               ))}
             </ul>
+            <a
+              href={buildMailto(tier.name)}
+              className="mt-6 inline-flex items-center justify-center rounded-full border border-border px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              onClick={() => track("pricing_cta_click", { plan: tier.name })}
+            >
+              Talk to the team
+            </a>
           </div>
         ))}
       </div>
