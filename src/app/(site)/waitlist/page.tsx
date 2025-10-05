@@ -1,10 +1,5 @@
-﻿"use client";
-
+﻿export const metadata = { title: "Join the LawLink waiting list" };
 import { FormEvent, useState } from "react";
-
-export const metadata = {
-  title: "Join the LawLink waiting list",
-};
 
 const recipient = "ahmadazzeh04@gmail.com";
 
@@ -99,3 +94,5 @@ export default function WaitlistPage() {
     </main>
   );
 }
+
+
