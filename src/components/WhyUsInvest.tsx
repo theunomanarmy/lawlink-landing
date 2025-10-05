@@ -1,40 +1,61 @@
-﻿const differentiators = [
-  {
-    title: "Trust-first network",
-    detail:
-      "Verified counsel with transparent performance data unlocks confident staffing for sensitive matters.",
-  },
-  {
-    title: "AI leverage with guardrails",
-    detail:
-      "Matter-aware copilots accelerate workflows while preserving attorney oversight and auditability.",
-  },
-  {
-    title: "Category momentum",
-    detail:
-      "Firms are rebalancing fixed payroll with on-demand expertise. LawLink makes the shift operationally viable.",
-  },
+﻿const whyUs = [
+  "Legal-only focus with verified professionals",
+  "Transparency across profiles, pricing, and timelines",
+  "GDPR-first data handling and security posture",
+  "Community features that build multi-sided value",
 ];
+
+const whyInvest = [
+  "Germany/NL wedge with EU expansion roadmap",
+  "Multi-revenue model: memberships, ads, platform fees",
+  "Lean operations with disciplined budgeting",
+  "Strong demand for trusted legal marketplaces",
+];
+
+const investorHref = "mailto:invest@lawlink.ai?subject=LawLink%20Investor%20Deck";
 
 export default function WhyUsInvest() {
   return (
     <section id="for-clients" className="space-y-8">
       <header className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-          Why teams and investors are betting on LawLink
+          Why partner with LawLink—whether you are joining or investing
         </h2>
         <p className="mt-3 text-lg text-muted">
-          The legal industry is undergoing its biggest workforce transition in decades.
-          LawLink helps firms stay profitable while exceeding client expectations.
+          Built in Germany with an EU-first mindset, LawLink brings clarity to every side of the legal marketplace.
         </p>
       </header>
-      <div className="grid gap-5 md:grid-cols-3">
-        {differentiators.map((item) => (
-          <div key={item.title} className="rounded-3xl border border-border bg-surface/80 p-6 shadow-soft">
-            <h3 className="text-lg font-semibold">{item.title}</h3>
-            <p className="mt-3 text-sm text-muted">{item.detail}</p>
-          </div>
-        ))}
+      <div className="grid gap-6 lg:grid-cols-2">
+        <div className="rounded-3xl border border-border bg-surface/80 p-6 shadow-soft">
+          <h3 className="text-xl font-semibold">Why choose LawLink</h3>
+          <ul className="mt-4 space-y-2 text-sm text-muted">
+            {whyUs.map((item) => (
+              <li key={item} className="flex gap-2">
+                <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="rounded-3xl border border-border bg-surface/80 p-6 shadow-soft">
+          <h3 className="text-xl font-semibold">Why invest in LawLink</h3>
+          <ul className="mt-4 space-y-2 text-sm text-muted">
+            {whyInvest.map((item) => (
+              <li key={item} className="flex gap-2">
+                <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="flex justify-center">
+        <a
+          href={investorHref}
+          className="rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground transition hover:bg-accent-soft"
+        >
+          Request Investor Deck
+        </a>
       </div>
     </section>
   );
