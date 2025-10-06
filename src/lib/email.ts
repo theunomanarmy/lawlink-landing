@@ -3,9 +3,10 @@ import { Resend } from "resend";
 
 const resendKey = process.env.RESEND_API_KEY;
 const toEmail = process.env.NOTIFY_TO_EMAIL;
+const fromEmail = process.env.NOTIFY_FROM_EMAIL || "LawLink <onboarding@resend.dev>";
 
 if (!resendKey) {
-  console.warn("RESEND_API_KEY missing – email notifications disabled.");
+  console.warn("RESEND_API_KEY missing - email notifications disabled.");
 }
 
 export async function sendNotificationEmail(
@@ -21,7 +22,7 @@ export async function sendNotificationEmail(
   const text = JSON.stringify(payload, null, 2);
 
   const result = await resend.emails.send({
-    from: "LawLink <no-reply@lawlink.app>",
+    from: fromEmail,
     to: [toEmail],
     subject,
     text,
