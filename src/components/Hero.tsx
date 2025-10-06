@@ -6,23 +6,8 @@
     >
       <div className="space-y-7">
         <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
-          a platform dedicated to the letter of the law
+          A Platform Dedicated to The Letter of The Law
         </h1>
-        <p className="text-lg text-muted sm:text-xl">Community, security, and simplicity.</p>
-        <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-medium sm:justify-start">
-          {[
-            "GDPR-first",
-            "24/7 availability (best-effort)",
-            "No hidden fees",
-          ].map((badge) => (
-            <span
-              key={badge}
-              className="rounded-full border border-border bg-background px-4 py-2 text-muted shadow-soft"
-            >
-              {badge}
-            </span>
-          ))}
-        </div>
       </div>
       <div className="mx-auto hidden max-w-lg rounded-2xl border border-border bg-surface/80 p-6 shadow-soft lg:block">
         <div className="space-y-4 text-left">
@@ -64,3 +49,6 @@
     </section>
   );
 }
+
+
+

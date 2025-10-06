@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
+  { href: "#pitch", label: "Pitch" },
   { href: "#demo", label: "Live search" },
   { href: "#features", label: "Features" },
   { href: "#bmc", label: "Model" },
@@ -79,4 +80,5 @@ export default function Navbar() {
     </header>
   );
 }
+
 
