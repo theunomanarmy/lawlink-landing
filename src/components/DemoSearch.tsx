@@ -27,7 +27,7 @@ export default function DemoSearch() {
   const [location, setLocation] = useState<string>(locationOptions[0]);
   const [selectedSpecialties, setSelectedSpecialties] = useState<string[]>([]);
   const [language, setLanguage] = useState<string>(languageOptions[0]);
-  const [selectedExtraId, setSelectedExtraId] = useState<string>("");
+  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -75,14 +75,12 @@ export default function DemoSearch() {
     });
   }, [language, lawyers, location, selectedSpecialties]);
 
-  const visibleLawyers = filteredLawyers.slice(0, 3);
+  const initialLawyers = filteredLawyers.slice(0, 3);
   const extraLawyers = filteredLawyers.slice(3);
-  const selectedExtraLawyer = useMemo(() => {
-    return extraLawyers.find((lawyer) => lawyer.id === selectedExtraId) ?? null;
-  }, [extraLawyers, selectedExtraId]);
+  const displayLawyers = showMore ? filteredLawyers : initialLawyers;
 
   useEffect(() => {
-    setSelectedExtraId("");
+    setShowMore(false);
   }, [location, language, selectedSpecialties]);
 
   const handleSpecialtyToggle = (value: string) => {
@@ -171,13 +169,13 @@ export default function DemoSearch() {
 
         <div className="mt-6 grid gap-4 md:grid-cols-2" role="status" aria-live="polite">
           {isLoading ? (
-            <p className="col-span-full text-center text-sm text-muted">Loading sample profiles…</p>
+            <p className="col-span-full text-center text-sm text-muted">Loading sample profiles.</p>
           ) : error ? (
             <p className="col-span-full rounded-2xl border border-dashed border-border bg-background/60 p-6 text-center text-sm text-muted">
               {error}
             </p>
-          ) : filteredLawyers.length > 0 ? (
-            visibleLawyers.map((lawyer) => (
+          ) : displayLawyers.length > 0 ? (
+            displayLawyers.map((lawyer) => (
               <LawyerProfileCard
                 key={lawyer.id}
                 lawyer={lawyer}
@@ -190,49 +188,23 @@ export default function DemoSearch() {
             </p>
           )}
         </div>
+
         {extraLawyers.length > 0 ? (
-          <div className="mt-8 space-y-4">
-            <label className="flex flex-col items-start gap-2 text-sm font-semibold text-foreground">
-              View another profile
-              <select
-                className="w-full rounded-full border border-border bg-background px-4 py-3 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:w-72"
-                value={selectedExtraId}
-                onChange={(event) => {
-                  const value = event.target.value;
-                  setSelectedExtraId(value);
-                  if (value) {
-                    track("profile_view", { id: value, via: "dropdown" });
-                  }
-                }}
-              >
-                <option value="">Select a lawyer to preview</option>
-                {extraLawyers.map((lawyer) => (
-                  <option key={lawyer.id} value={lawyer.id}>
-                    {lawyer.name} · {lawyer.specialty}
-                  </option>
-                ))}
-              </select>
-            </label>
-            {selectedExtraId && selectedExtraLawyer ? (
-              <LawyerProfileCard
-                key={selectedExtraLawyer.id}
-                lawyer={selectedExtraLawyer}
-                onView={(profile) => track("profile_view", { id: profile.id })}
-              />
-            ) : null}
+          <div className="mt-8 flex justify-center">
+            <button
+              type="button"
+              className="rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              onClick={() => {
+                const next = !showMore;
+                setShowMore(next);
+                track("demo_toggle_more", { expanded: next });
+              }}
+            >
+              {showMore ? "Show fewer lawyers" : `View ${extraLawyers.length} more lawyers`}
+            </button>
           </div>
         ) : null}
       </div>
     </section>
   );
 }
-
-
-
-
-
-
-
-
-
-
