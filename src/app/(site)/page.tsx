@@ -8,7 +8,6 @@ import BmcCanvas from "@/components/BmcCanvas";
 import WhyUsInvest from "@/components/WhyUsInvest";
 import Traction from "@/components/Traction";
 import Feedback from "@/components/Feedback";
-import Roadmap from "@/components/Roadmap";
 import Footer from "@/components/Footer";
 
 export default function Page() {
@@ -32,11 +31,11 @@ export default function Page() {
       <Traction />
       <WhyUsInvest />
       <Feedback />
-      <Roadmap />
       <Footer />
     </main>
   );
 }
+
 
 
 
