@@ -10,7 +10,7 @@ if (!resendKey) {
 }
 
 export async function sendNotificationEmail(
-  kind: "waitlist" | "feedback",
+  kind: "waitlist" | "feedback" | "booking",
   payload: Record<string, unknown>,
 ) {
   if (!resendKey || !toEmail) {
@@ -30,3 +30,4 @@ export async function sendNotificationEmail(
 
   return { ok: true, id: result.data?.id ?? null } as const;
 }
+

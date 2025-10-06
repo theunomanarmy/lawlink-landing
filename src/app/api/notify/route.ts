@@ -4,7 +4,7 @@ import { sendNotificationEmail } from "@/lib/email";
 const webhookUrl = process.env.NOTIFY_WEBHOOK_URL; // optional
 
 type SanitizedPayload = {
-  kind: "waitlist" | "feedback";
+  kind: "waitlist" | "feedback" | "booking";
   email: string;
   role: string;
   country: string;
@@ -15,11 +15,20 @@ type SanitizedPayload = {
   phone: string;
   address: string;
   _ts: string;
+  caseType: string;
+  details: string;
+  lawyerId: string;
+  lawyerName: string;
+  lawyerSpecialty: string;
+  attachmentName: string;
+  attachmentType: string;
+  attachmentSize: number;
+  attachmentBase64: string;
 };
 
 function sanitize(input: unknown): SanitizedPayload {
   const obj = typeof input === "object" && input ? input : {};
-  const kind = obj.kind === "feedback" ? "feedback" : "waitlist";
+  const kind = obj.kind === "feedback" ? "feedback" : obj.kind === "booking" ? "booking" : "waitlist";
   return {
     kind,
     email: String(obj.email || "").slice(0, 200),
@@ -31,6 +40,18 @@ function sanitize(input: unknown): SanitizedPayload {
     lastName: String(obj.lastName || "").slice(0, 120),
     phone: String(obj.phone || "").slice(0, 60),
     address: String(obj.address || "").slice(0, 200),
+    caseType: String(obj.caseType || "").slice(0, 120),
+    details: String(obj.details || "").slice(0, 4000),
+    lawyerId: String(obj.lawyerId || "").slice(0, 200),
+    lawyerName: String(obj.lawyerName || "").slice(0, 200),
+    lawyerSpecialty: String(obj.lawyerSpecialty || "").slice(0, 200),
+    attachmentName: String(obj.attachmentName || "").slice(0, 255),
+    attachmentType: String(obj.attachmentType || "").slice(0, 120),
+    attachmentSize: typeof obj.attachmentSize === "number" ? obj.attachmentSize : 0,
+    attachmentBase64:
+      typeof obj.attachmentBase64 === "string"
+        ? obj.attachmentBase64.slice(0, 500000)
+        : "",
     _ts: new Date().toISOString(),
   };
 }
@@ -69,6 +90,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "server_error" }, { status: 500 });
   }
 }
+
+
 
 
 
