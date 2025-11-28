@@ -5,14 +5,10 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "#pitch", label: "Pitch" },
-  { href: "#demo", label: "Live search" },
-  { href: "#features", label: "Features" },
-  { href: "#bmc", label: "Model" },
-  { href: "#traction", label: "Traction" },
-  { href: "#for-clients", label: "Why us" },
-  { href: "#feedback", label: "Feedback" },
-  { href: "#contact", label: "Contact" },
+  { href: "/lawyers", label: "Lawyers" },
+  { href: "#pitch", label: "About us" },
+  { href: "#for-clients", label: "why" },
+  { href: "#feedback", label: "Feedback & contact" },
 ];
 
 const waitlistHref = "mailto:hello@lawlink.ai?subject=LawLink%20Waitlist";

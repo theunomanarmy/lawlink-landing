@@ -49,27 +49,39 @@ type RawPayload = {
 };
 
 function sanitize(input: unknown): SanitizedPayload {
-  const obj: RawPayload = (typeof input === "object" && input) ? (input as RawPayload) : {};
-  const kind = obj.kind === "feedback" ? "feedback" : obj.kind === "booking" ? "booking" : "waitlist";
+  const obj = (typeof input === "object" && input)
+    ? (input as RawPayload)
+    : ({} as RawPayload); // ← THIS is the fix
+
+  const kind: SanitizedPayload["kind"] =
+    obj.kind === "feedback"
+      ? "feedback"
+      : obj.kind === "booking"
+      ? "booking"
+      : "waitlist";
+
   return {
     kind,
-    email: String(obj.email || "").slice(0, 200),
-    role: String(obj.role || "").slice(0, 100),
-    country: String(obj.country || "").slice(0, 100),
-    specialties: Array.isArray(obj.specialties) ? obj.specialties.slice(0, 12) : [],
-    message: String(obj.message || "").slice(0, 4000),
-    firstName: String(obj.firstName || "").slice(0, 120),
-    lastName: String(obj.lastName || "").slice(0, 120),
-    phone: String(obj.phone || "").slice(0, 60),
-    address: String(obj.address || "").slice(0, 200),
-    caseType: String(obj.caseType || "").slice(0, 120),
-    details: String(obj.details || "").slice(0, 4000),
-    lawyerId: String(obj.lawyerId || "").slice(0, 200),
-    lawyerName: String(obj.lawyerName || "").slice(0, 200),
-    lawyerSpecialty: String(obj.lawyerSpecialty || "").slice(0, 200),
-    attachmentName: String(obj.attachmentName || "").slice(0, 255),
-    attachmentType: String(obj.attachmentType || "").slice(0, 120),
-    attachmentSize: typeof obj.attachmentSize === "number" ? obj.attachmentSize : 0,
+    email: String(obj.email ?? "").slice(0, 200),
+    role: String(obj.role ?? "").slice(0, 100),
+    country: String(obj.country ?? "").slice(0, 100),
+    specialties: Array.isArray(obj.specialties)
+      ? obj.specialties.slice(0, 12)
+      : [],
+    message: String(obj.message ?? "").slice(0, 4000),
+    firstName: String(obj.firstName ?? "").slice(0, 120),
+    lastName: String(obj.lastName ?? "").slice(0, 120),
+    phone: String(obj.phone ?? "").slice(0, 60),
+    address: String(obj.address ?? "").slice(0, 200),
+    caseType: String(obj.caseType ?? "").slice(0, 120),
+    details: String(obj.details ?? "").slice(0, 4000),
+    lawyerId: String(obj.lawyerId ?? "").slice(0, 200),
+    lawyerName: String(obj.lawyerName ?? "").slice(0, 200),
+    lawyerSpecialty: String(obj.lawyerSpecialty ?? "").slice(0, 200),
+    attachmentName: String(obj.attachmentName ?? "").slice(0, 255),
+    attachmentType: String(obj.attachmentType ?? "").slice(0, 120),
+    attachmentSize:
+      typeof obj.attachmentSize === "number" ? obj.attachmentSize : 0,
     attachmentBase64:
       typeof obj.attachmentBase64 === "string"
         ? obj.attachmentBase64.slice(0, 500000)
@@ -77,6 +89,7 @@ function sanitize(input: unknown): SanitizedPayload {
     _ts: new Date().toISOString(),
   };
 }
+
 
 export async function POST(req: Request) {
   try {
