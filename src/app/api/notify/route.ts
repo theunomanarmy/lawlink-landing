@@ -26,8 +26,30 @@ type SanitizedPayload = {
   attachmentBase64: string;
 };
 
+type RawPayload = {
+  kind?: "feedback" | "booking" | "waitlist";
+  email?: unknown;
+  role?: unknown;
+  country?: unknown;
+  specialties?: unknown;
+  message?: unknown;
+  firstName?: unknown;
+  lastName?: unknown;
+  phone?: unknown;
+  address?: unknown;
+  caseType?: unknown;
+  details?: unknown;
+  lawyerId?: unknown;
+  lawyerName?: unknown;
+  lawyerSpecialty?: unknown;
+  attachmentName?: unknown;
+  attachmentType?: unknown;
+  attachmentSize?: unknown;
+  attachmentBase64?: unknown;
+};
+
 function sanitize(input: unknown): SanitizedPayload {
-  const obj = typeof input === "object" && input ? input : {};
+  const obj: RawPayload = (typeof input === "object" && input) ? (input as RawPayload) : {};
   const kind = obj.kind === "feedback" ? "feedback" : obj.kind === "booking" ? "booking" : "waitlist";
   return {
     kind,
