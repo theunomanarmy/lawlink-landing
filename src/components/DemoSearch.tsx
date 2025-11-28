@@ -1,5 +1,6 @@
-﻿"use client";
+"use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import LawyerProfileCard from "@/components/LawyerProfileCard";
 import { track } from "@/lib/track";
@@ -204,6 +205,15 @@ export default function DemoSearch() {
             </button>
           </div>
         ) : null}
+
+        <div className="mt-6 flex justify-center">
+          <Link
+            href="/lawyers"
+            className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background shadow-soft transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          >
+            View all lawyers with portfolios
+          </Link>
+        </div>
       </div>
     </section>
   );

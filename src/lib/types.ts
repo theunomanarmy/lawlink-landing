@@ -1,4 +1,11 @@
-﻿export type Lawyer = {
+export type PortfolioItem = {
+  title: string;
+  summary: string;
+  outcome?: string;
+  year?: number;
+};
+
+export type Lawyer = {
   id: string;
   name: string;
   specialty: string;
@@ -7,6 +14,7 @@
   languages: string[];
   verified: boolean;
   cases_anonymized: number;
+  portfolio?: PortfolioItem[];
 };
 
 export type PricingTier = {

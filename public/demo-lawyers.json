@@ -1,12 +1,242 @@
-﻿[
-  { "id": "lawyer-01", "name": "Dr. Lena Hoffmann", "specialty": "Corporate", "years": 12, "location": "Berlin", "languages": ["German", "English"], "verified": true, "cases_anonymized": 240 },
-  { "id": "lawyer-02", "name": "Karim El-Sayed", "specialty": "Immigration", "years": 9, "location": "Munich", "languages": ["Arabic", "German", "English"], "verified": true, "cases_anonymized": 180 },
-  { "id": "lawyer-03", "name": "Julia Brandt", "specialty": "Financial", "years": 7, "location": "Frankfurt", "languages": ["German", "English"], "verified": false, "cases_anonymized": 95 },
-  { "id": "lawyer-04", "name": "Samira Haddad", "specialty": "Family", "years": 10, "location": "Hamburg", "languages": ["German", "Arabic"], "verified": true, "cases_anonymized": 160 },
-  { "id": "lawyer-05", "name": "Paul Schneider", "specialty": "Corporate", "years": 6, "location": "Stuttgart", "languages": ["German"], "verified": false, "cases_anonymized": 70 },
-  { "id": "lawyer-06", "name": "Mina Farah", "specialty": "Immigration", "years": 8, "location": "Cologne", "languages": ["English", "Arabic"], "verified": true, "cases_anonymized": 120 },
-  { "id": "lawyer-07", "name": "Jonas Weber", "specialty": "Other", "years": 5, "location": "Leipzig", "languages": ["German"], "verified": true, "cases_anonymized": 88 },
-  { "id": "lawyer-08", "name": "Aylin Demir", "specialty": "Financial", "years": 11, "location": "Dusseldorf", "languages": ["German", "English", "Arabic"], "verified": true, "cases_anonymized": 210 },
-  { "id": "lawyer-09", "name": "Felix Kramer", "specialty": "Family", "years": 4, "location": "Berlin", "languages": ["German", "English"], "verified": false, "cases_anonymized": 60 },
-  { "id": "lawyer-10", "name": "Nadia Rahman", "specialty": "Corporate", "years": 13, "location": "Munich", "languages": ["English", "German"], "verified": true, "cases_anonymized": 265 }
+[
+  {
+    "id": "lawyer-01",
+    "name": "Dr. Lena Hoffmann",
+    "specialty": "Corporate",
+    "years": 12,
+    "location": "Berlin",
+    "languages": ["German", "English"],
+    "verified": true,
+    "cases_anonymized": 240,
+    "portfolio": [
+      {
+        "title": "Cross-border M&A for Berlin fintech",
+        "summary": "Structured share purchase agreement and negotiated earn-out protections for a €72M exit to a UK acquirer.",
+        "outcome": "Closed on time with zero post-close claims",
+        "year": 2024
+      },
+      {
+        "title": "Governance overhaul for manufacturing group",
+        "summary": "Redrafted shareholder agreements, board charters, and ESOP to align with new strategic investor terms.",
+        "outcome": "Secured unanimous board approval and investor sign-off",
+        "year": 2023
+      }
+    ]
+  },
+  {
+    "id": "lawyer-02",
+    "name": "Karim El-Sayed",
+    "specialty": "Immigration",
+    "years": 9,
+    "location": "Munich",
+    "languages": ["Arabic", "German", "English"],
+    "verified": true,
+    "cases_anonymized": 180,
+    "portfolio": [
+      {
+        "title": "Blue Card program for engineering team",
+        "summary": "Coordinated immigration strategy for 14 hires across three EU jurisdictions with accelerated approvals.",
+        "outcome": "100% approvals within target timelines",
+        "year": 2024
+      },
+      {
+        "title": "Family reunification for medical specialist",
+        "summary": "Managed complex documentation and appeals for dependents while client transitioned employers.",
+        "outcome": "Granted residence with no employment interruption",
+        "year": 2023
+      }
+    ]
+  },
+  {
+    "id": "lawyer-03",
+    "name": "Julia Brandt",
+    "specialty": "Financial",
+    "years": 7,
+    "location": "Frankfurt",
+    "languages": ["German", "English"],
+    "verified": false,
+    "cases_anonymized": 95,
+    "portfolio": [
+      {
+        "title": "Banking license readiness review",
+        "summary": "Ran gap analysis on AML controls, governance, and capital buffers for a new digital bank applicant.",
+        "outcome": "Cleared BaFin review milestones without remediation",
+        "year": 2024
+      },
+      {
+        "title": "Debt restructuring for logistics group",
+        "summary": "Negotiated covenant resets and revised collateral package across three lending syndicates.",
+        "outcome": "Extended maturities by 24 months with reduced covenants",
+        "year": 2022
+      }
+    ]
+  },
+  {
+    "id": "lawyer-04",
+    "name": "Samira Haddad",
+    "specialty": "Family",
+    "years": 10,
+    "location": "Hamburg",
+    "languages": ["German", "Arabic"],
+    "verified": true,
+    "cases_anonymized": 160,
+    "portfolio": [
+      {
+        "title": "Cross-border custody agreement",
+        "summary": "Drafted parenting plan honoring dual jurisdiction requirements and mediated enforcement terms.",
+        "outcome": "Agreement ratified by both courts without appeals",
+        "year": 2023
+      },
+      {
+        "title": "Asset protection during separation",
+        "summary": "Structured post-nuptial agreement with clear business ownership carve-outs and support schedule.",
+        "outcome": "Prevented litigation and preserved company valuation",
+        "year": 2022
+      }
+    ]
+  },
+  {
+    "id": "lawyer-05",
+    "name": "Paul Schneider",
+    "specialty": "Corporate",
+    "years": 6,
+    "location": "Stuttgart",
+    "languages": ["German"],
+    "verified": false,
+    "cases_anonymized": 70,
+    "portfolio": [
+      {
+        "title": "Series A documentation for robotics startup",
+        "summary": "Prepared investment agreements, IP assignments, and liquidation preferences for a €18M round.",
+        "outcome": "Closed funding with founder-friendly dilution",
+        "year": 2024
+      },
+      {
+        "title": "Supplier renegotiations post-acquisition",
+        "summary": "Centralized procurement terms and harmonized liability caps across 25 key vendors.",
+        "outcome": "Reduced aggregate exposure by 30%",
+        "year": 2023
+      }
+    ]
+  },
+  {
+    "id": "lawyer-06",
+    "name": "Mina Farah",
+    "specialty": "Immigration",
+    "years": 8,
+    "location": "Cologne",
+    "languages": ["English", "Arabic"],
+    "verified": true,
+    "cases_anonymized": 120,
+    "portfolio": [
+      {
+        "title": "Startup visa for founding duo",
+        "summary": "Advised on qualifying business plan, proof of funds, and relocation sequencing for founders.",
+        "outcome": "Visas issued with expedited processing",
+        "year": 2024
+      },
+      {
+        "title": "Work authorization audit for biotech lab",
+        "summary": "Reviewed 60+ personnel files, identified risk gaps, and refreshed compliance playbook.",
+        "outcome": "Closed audit with no fines or follow-up actions",
+        "year": 2023
+      }
+    ]
+  },
+  {
+    "id": "lawyer-07",
+    "name": "Jonas Weber",
+    "specialty": "Other",
+    "years": 5,
+    "location": "Leipzig",
+    "languages": ["German"],
+    "verified": true,
+    "cases_anonymized": 88,
+    "portfolio": [
+      {
+        "title": "Data protection rollout for SaaS launch",
+        "summary": "Implemented GDPR notices, DPIA, and vendor DPAs with rapid review cycles for launch deadline.",
+        "outcome": "Passed external privacy assessment in first round",
+        "year": 2024
+      },
+      {
+        "title": "Trademark defense for consumer brand",
+        "summary": "Led opposition proceedings and negotiated coexistence agreement with incumbent brand.",
+        "outcome": "Secured trademark registration without rebrand",
+        "year": 2022
+      }
+    ]
+  },
+  {
+    "id": "lawyer-08",
+    "name": "Aylin Demir",
+    "specialty": "Financial",
+    "years": 11,
+    "location": "Dusseldorf",
+    "languages": ["German", "English", "Arabic"],
+    "verified": true,
+    "cases_anonymized": 210,
+    "portfolio": [
+      {
+        "title": "Financing round for renewable project",
+        "summary": "Structured project finance stack with mezzanine tranche and negotiated step-in rights.",
+        "outcome": "Reached financial close with improved DSCR",
+        "year": 2024
+      },
+      {
+        "title": "Sanctions compliance remediation",
+        "summary": "Reviewed KYC program, enhanced screening rules, and trained front-office teams.",
+        "outcome": "Lifted enhanced monitoring from correspondent bank",
+        "year": 2023
+      }
+    ]
+  },
+  {
+    "id": "lawyer-09",
+    "name": "Felix Kramer",
+    "specialty": "Family",
+    "years": 4,
+    "location": "Berlin",
+    "languages": ["German", "English"],
+    "verified": false,
+    "cases_anonymized": 60,
+    "portfolio": [
+      {
+        "title": "Mediation for shared custody schedule",
+        "summary": "Facilitated structured mediation with child-first milestones and flexible visitation ladder.",
+        "outcome": "Resulted in signed agreement without litigation",
+        "year": 2024
+      },
+      {
+        "title": "Relocation planning for co-parents",
+        "summary": "Prepared relocation petition and alternate holiday schedules to satisfy court conditions.",
+        "outcome": "Approved move with safeguarded visitation",
+        "year": 2023
+      }
+    ]
+  },
+  {
+    "id": "lawyer-10",
+    "name": "Nadia Rahman",
+    "specialty": "Corporate",
+    "years": 13,
+    "location": "Munich",
+    "languages": ["English", "German"],
+    "verified": true,
+    "cases_anonymized": 265,
+    "portfolio": [
+      {
+        "title": "Carve-out for industrial spin-off",
+        "summary": "Separated IP, workforce, and supply contracts into a new entity and coordinated TSA.",
+        "outcome": "Spin-off completed with zero downtime for customers",
+        "year": 2024
+      },
+      {
+        "title": "Commercial contract playbook refresh",
+        "summary": "Modernized templates, liability positions, and approval matrix for high-volume SaaS sales.",
+        "outcome": "Reduced deal cycle by 22%",
+        "year": 2023
+      }
+    ]
+  }
 ]
