@@ -34,7 +34,7 @@ export default function FAQ() {
           Straight answers to the questions lawyers, firms, and clients ask most often.
         </p>
       </header>
-      <div className="mx-auto max-w-3xl divide-y divide-border rounded-2xl border border-border bg-surface/80 shadow-soft">
+      <div className="mx-auto max-w-3xl divide-y divide-border rounded-2xl border border-border bg-white shadow-soft">
         {faqs.map((faq) => (
           <details key={faq.question} className="group p-6">
             <summary className="cursor-pointer list-none text-left text-lg font-semibold text-foreground">

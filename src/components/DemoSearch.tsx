@@ -116,7 +116,7 @@ export default function DemoSearch() {
         </p>
       </header>
 
-      <div className="rounded-2xl border border-border bg-surface/80 p-6 shadow-soft">
+      <div className="rounded-2xl border border-border bg-white p-6 shadow-soft">
         <div className="grid gap-6 md:grid-cols-3">
           <label className="flex flex-col gap-2 text-left text-sm font-semibold text-foreground">
             <span>Location</span>

@@ -41,7 +41,7 @@ export default function Features() {
     <section id="features" className="container mx-auto space-y-10 px-4 py-16">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-          Everything you need to collaborate confidently
+          Core features built for trusted legal collaboration
         </h2>
         <p className="mt-3 text-lg text-muted">
           Built for lawyers, firms, and clients who need a trusted network without hidden costs or guesswork.
@@ -51,7 +51,7 @@ export default function Features() {
         {features.map((feature) => (
           <div
             key={feature.title}
-            className="rounded-2xl border border-border bg-surface/80 p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-glow"
+            className="rounded-2xl border border-border bg-white p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-glow"
           >
             <h3 className="text-xl font-semibold">{feature.title}</h3>
             <ul className="mt-4 space-y-2 text-sm text-muted">

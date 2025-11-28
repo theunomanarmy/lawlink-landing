@@ -15,7 +15,7 @@ export default function Security() {
           LawLink is built to keep legal data protected while making collaboration effortless.
         </p>
       </header>
-      <div className="mx-auto max-w-3xl rounded-2xl border border-border bg-surface/80 p-8 shadow-soft">
+      <div className="mx-auto max-w-3xl rounded-2xl border border-border bg-white p-8 shadow-soft">
         <ul className="space-y-3 text-sm text-muted">
           {bullets.map((bullet) => (
             <li key={bullet} className="flex gap-3">

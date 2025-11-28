@@ -52,7 +52,7 @@ export default function Feedback() {
       </header>
       <form
         onSubmit={handleSubmit}
-        className="mx-auto grid w-full max-w-2xl gap-4 rounded-2xl border border-border bg-surface/80 p-6 shadow-soft"
+        className="mx-auto grid w-full max-w-2xl gap-4 rounded-2xl border border-border bg-white p-6 shadow-soft"
       >
         <label className="flex flex-col gap-2 text-left text-sm font-semibold text-foreground">
           Email
@@ -61,7 +61,7 @@ export default function Feedback() {
             required
             value={form.email}
             onChange={handleChange("email")}
-            className="rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             placeholder="you@example.com"
           />
         </label>
@@ -71,7 +71,7 @@ export default function Feedback() {
             required
             value={form.message}
             onChange={handleChange("message")}
-            className="min-h-[140px] rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="min-h-[140px] rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             placeholder="Tell us what you think"
           />
         </label>

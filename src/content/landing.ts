@@ -16,16 +16,16 @@ export const PROBLEM = {
 };
 
 export const AI_RISK = {
-  title: "AI is accelerating—so are legal risks",
+  title: "AI is accelerating-so are legal risks",
   body: [
-    "AI’s rapid improvement brings real benefits—but also new threats: high-quality fake documents, IDs, and images that can undermine trust.",
+    "AI's rapid improvement brings real benefits-but also new threats: high-quality fake documents, IDs, and images that can undermine trust.",
     "Security and verification gaps are growing faster than most platforms can address.",
   ],
   planned: [
-    "Document checks with official sources (partnerships required, **planned**).",
-    "Signal-based AI content flags to assist human review (**planned**, not a guarantee).",
+    "Document checks with official sources (partnerships required).",
+    "Signal-based AI content flags to assist human review.",
   ],
-  disclaimer: "These items are roadmap explorations, not live features or guarantees.",
+  disclaimer: "",
 };
 
 export const SOLUTION = {
@@ -39,14 +39,13 @@ export const SOLUTION = {
 export const FEATURES = {
   title: "Key features",
   items: [
-    { label: "Tailored lawyer search", detail: "Filter by practice area, location, language, and services." },
-    { label: "Profile boosts for firms", detail: "Memberships can increase visibility and placement." },
-    { label: "Built-in legal tools", detail: "Secure chat, document sharing, and appointment booking (rolling release)." },
-    { label: "GDPR-conscious by design", detail: "Data minimization and privacy-forward practices." },
-    { label: "Emergency (best-effort) routing", detail: "Quickly request urgent help for incidents like accidents or evictions (**planned**, not a hotline)." },
-    { label: "24/7 access window", detail: "Submit inquiries anytime; availability depends on participating professionals." },
-    { label: "Community networking", detail: "Posts, knowledge sharing, and career connections." },
-    { label: "AI risk mitigation (planned)", detail: "Assistive flags and potential document checks via partners—subject to feasibility and compliance." },
+    { label: "Tailored lawyer search", icon: "search" },
+    { label: "Built-in legal tools", icon: "toolkit" },
+    { label: "GDPR-conscious by design", icon: "shield" },
+    { label: "Emergency (best-effort) routing", icon: "alert" },
+    { label: "24/7 access window", icon: "clock" },
+    { label: "Community networking", icon: "network" },
+    { label: "AI risk mitigation (planned)", icon: "ai" },
   ],
 };
 

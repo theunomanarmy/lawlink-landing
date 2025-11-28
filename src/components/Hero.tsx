@@ -9,7 +9,7 @@
           A Platform Dedicated to The Letter of The Law
         </h1>
       </div>
-      <div className="mx-auto hidden max-w-lg rounded-2xl border border-border bg-surface/80 p-6 shadow-soft lg:block">
+      <div className="mx-auto hidden max-w-lg rounded-2xl border border-border bg-white p-6 shadow-soft lg:block">
         <div className="space-y-4 text-left">
           <p className="text-sm font-semibold text-muted">Active request overview</p>
           <div className="rounded-2xl border border-border bg-background p-5">

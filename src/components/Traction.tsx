@@ -2,7 +2,7 @@
   return (
     <section id="traction" className="container mx-auto space-y-6 px-4 py-16 text-center">
       <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-        This is a landing page to prove traction.
+        Help shape LawLink before launch
       </h2>
       <p className="mx-auto max-w-2xl text-base text-muted">
         Share your details so we can keep you updated as the platform evolves.

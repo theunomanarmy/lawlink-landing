@@ -26,7 +26,7 @@ export default function WhyUsInvest() {
         </p>
       </header>
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-2xl border border-border bg-surface/80 p-6 shadow-soft">
+        <div className="rounded-2xl border border-border bg-white p-6 shadow-soft">
           <h3 className="text-xl font-semibold">Why choose LawLink</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted">
             {whyUs.map((item) => (
@@ -37,7 +37,7 @@ export default function WhyUsInvest() {
             ))}
           </ul>
         </div>
-        <div className="rounded-2xl border border-border bg-surface/80 p-6 shadow-soft">
+        <div className="rounded-2xl border border-border bg-white p-6 shadow-soft">
           <h3 className="text-xl font-semibold">Why invest in LawLink</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted">
             {whyInvest.map((item) => (
