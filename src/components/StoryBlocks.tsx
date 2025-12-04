@@ -23,7 +23,7 @@ export default function StoryBlocks() {
   return (
     <>
       <section id="pitch" className="container mx-auto px-4 py-16">
-        <div className="grid gap-10 rounded-3xl border border-border bg-white p-8 shadow-soft lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="box grid gap-10 rounded-3xl border border-border bg-surface p-8 shadow-soft lg:grid-cols-[1.15fr_0.85fr]">
           <div className="space-y-5">
             <h2 className="text-3xl font-black uppercase tracking-[0.15em] text-foreground sm:text-4xl">
               {PITCH.title}
@@ -34,7 +34,7 @@ export default function StoryBlocks() {
               </p>
             ))}
           </div>
-          <div className="rounded-2xl border border-border bg-white p-6 shadow-soft">
+          <div className="box rounded-2xl border border-border bg-surface p-6 shadow-soft">
             <div className="space-y-3">
               <p className="text-sm font-semibold uppercase tracking-wider text-muted">
                 Platform promises
@@ -80,7 +80,7 @@ export default function StoryBlocks() {
               return (
                 <li
                   key={index}
-                  className="flex flex-col items-center rounded-2xl border border-border bg-white/80 p-6 text-center shadow-soft transition hover:-translate-y-1 hover:shadow-glow"
+                  className="box flex flex-col items-center rounded-2xl border border-border bg-surface/80 p-6 text-center shadow-soft transition hover:-translate-y-1 hover:shadow-glow"
                 >
                   <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent-soft">
                     <Icon className="h-6 w-6 text-accent" />
@@ -90,7 +90,7 @@ export default function StoryBlocks() {
               );
             })}
           </ul>
-          <p className="text-sm text-neutral-500">{GLOBAL_DISCLAIMER}</p>
+          <p className="text-sm text-muted">{GLOBAL_DISCLAIMER}</p>
         </div>
       </section>
     </>
@@ -116,9 +116,9 @@ function iconForFeature(key?: string) {
 
 function ProblemCard() {
   return (
-    <article className="rounded-3xl border border-border bg-white p-8 shadow-soft">
+    <article className="box rounded-3xl border border-border bg-surface p-8 shadow-soft">
       <header className="flex items-start gap-3">
-        <span className="rounded-full bg-red-50 p-3 text-red-600">
+        <span className="rounded-full bg-accent-soft p-3 text-accent">
           <AlertTriangle className="h-5 w-5" />
         </span>
         <div>
@@ -129,7 +129,7 @@ function ProblemCard() {
       <ul className="mt-6 space-y-4 text-base text-muted">
         {PROBLEM.bullets.map((item) => (
           <li key={item} className="flex gap-3">
-            <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-red-300" />
+            <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-accent" />
             <span>{item}</span>
           </li>
         ))}
@@ -140,9 +140,9 @@ function ProblemCard() {
 
 function SolutionCard() {
   return (
-    <article className="rounded-3xl border border-border bg-gradient-to-br from-emerald-50 via-white to-white p-8 shadow-soft">
+    <article className="rounded-3xl border border-border bg-gradient-to-br from-[#6b5238] via-[#5a4530] to-[#4a3a28] p-8 shadow-soft">
       <header className="flex items-start gap-3">
-        <span className="rounded-full bg-emerald-100 p-3 text-emerald-600">
+        <span className="rounded-full bg-accent-soft p-3 text-accent">
           <ShieldCheck className="h-5 w-5" />
         </span>
         <div>
@@ -161,7 +161,7 @@ function SolutionCard() {
 
 function AiriskCard() {
   return (
-    <article className="rounded-3xl border border-border bg-white p-8 shadow-soft">
+    <article className="box rounded-3xl border border-border bg-surface p-8 shadow-soft">
       <header className="flex items-start gap-3">
         <span className="rounded-full bg-accent-soft p-3">
           <Sparkles className="h-5 w-5 text-accent" />
@@ -176,7 +176,7 @@ function AiriskCard() {
           <p key={paragraph}>{paragraph}</p>
         ))}
       </div>
-      <div className="mt-8 rounded-2xl border border-border bg-white p-6 shadow-soft">
+      <div className="box mt-8 rounded-2xl border border-border bg-surface p-6 shadow-soft">
         <div className="flex items-center gap-3">
           <span className="rounded-full bg-accent-soft p-2">
             <ShieldCheck className="h-4 w-4 text-accent" />

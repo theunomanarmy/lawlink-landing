@@ -26,7 +26,7 @@ export default function WhyUsInvest() {
         </p>
       </header>
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-2xl border border-border bg-white p-6 shadow-soft">
+        <div className="box rounded-2xl border border-border bg-surface p-6 shadow-soft">
           <h3 className="text-xl font-semibold">Why choose LawLink</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted">
             {whyUs.map((item) => (
@@ -37,7 +37,7 @@ export default function WhyUsInvest() {
             ))}
           </ul>
         </div>
-        <div className="rounded-2xl border border-border bg-white p-6 shadow-soft">
+        <div className="box rounded-2xl border border-border bg-surface p-6 shadow-soft">
           <h3 className="text-xl font-semibold">Why invest in LawLink</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted">
             {whyInvest.map((item) => (
@@ -52,7 +52,7 @@ export default function WhyUsInvest() {
       <div className="flex justify-center">
         <a
           href={investorHref}
-          className="rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          className="rounded-full border border-accent px-5 py-3 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         >
           Request Investor Deck
         </a>

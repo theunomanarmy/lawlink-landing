@@ -42,7 +42,7 @@ export default function HowItWorks() {
         {steps.map((step) => (
           <div
             key={step.title}
-            className="rounded-2xl border border-border bg-white/80 p-6 text-left shadow-soft"
+            className="box rounded-2xl border border-border bg-surface p-6 text-left shadow-soft"
           >
             <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent-soft">
               <step.icon className="h-5 w-5 text-accent" />

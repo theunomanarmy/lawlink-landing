@@ -52,7 +52,7 @@ export default function Feedback() {
       </header>
       <form
         onSubmit={handleSubmit}
-        className="mx-auto grid w-full max-w-2xl gap-4 rounded-2xl border border-border bg-white p-6 shadow-soft"
+        className="box mx-auto grid w-full max-w-2xl gap-4 rounded-2xl border border-border bg-surface p-6 shadow-soft"
       >
         <label className="flex flex-col gap-2 text-left text-sm font-semibold text-foreground">
           Email
@@ -61,7 +61,7 @@ export default function Feedback() {
             required
             value={form.email}
             onChange={handleChange("email")}
-            className="rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             placeholder="you@example.com"
           />
         </label>
@@ -71,7 +71,7 @@ export default function Feedback() {
             required
             value={form.message}
             onChange={handleChange("message")}
-            className="min-h-[140px] rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="min-h-[140px] rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             placeholder="Tell us what you think"
           />
         </label>
@@ -83,7 +83,7 @@ export default function Feedback() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-70"
+          className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#8b5a3c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-70"
         >
           {status === "sending" ? "Sending…" : "Send feedback"}
         </button>

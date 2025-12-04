@@ -11,37 +11,37 @@ export default function Page() {
   return (
     <main className="min-h-screen">
       <Navbar />
-      <section className="full-width-section bg-white">
+      <section className="app-section">
         <div className="section-content">
           <Hero />
         </div>
       </section>
-      <section className="full-width-section bg-slate-100">
+      <section className="app-section">
         <div className="section-content">
           <HowItWorks />
         </div>
       </section>
-      <section className="full-width-section bg-gray-50">
+      <section className="app-section">
         <div className="section-content">
           <StoryBlocks />
         </div>
       </section>
-      <section className="full-width-section bg-zinc-100">
+      <section className="app-section">
         <div className="section-content">
           <DemoSearch />
         </div>
       </section>
-      <section className="full-width-section bg-neutral-100">
+      <section className="app-section">
         <div className="section-content">
           <WhyUsInvest />
         </div>
       </section>
-      <section className="full-width-section bg-gray-100">
+      <section className="app-section">
         <div className="section-content">
           <Feedback />
         </div>
       </section>
-      <section className="full-width-section bg-zinc-200">
+      <section className="app-section">
         <div className="section-content">
           <Footer />
         </div>

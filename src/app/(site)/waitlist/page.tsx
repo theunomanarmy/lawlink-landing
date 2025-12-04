@@ -5,7 +5,7 @@ import WaitlistForm from "@/components/WaitlistForm";
 export default function WaitlistPage() {
   return (
     <main>
-      <section className="full-width-section bg-white">
+      <section className="full-width-section bg-background">
         <div className="section-content">
           <div className="mx-auto max-w-2xl space-y-8 px-4">
             <header className="space-y-3 text-center">

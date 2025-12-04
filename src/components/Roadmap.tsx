@@ -47,8 +47,8 @@ export default function Roadmap() {
                 </p>
                 <p className="mt-1 text-lg font-semibold text-foreground">{item.quarter}</p>
               </div>
-              <div className="hidden h-4 w-4 rounded-full border-2 border-accent bg-white md:block" />
-              <div className="rounded-2xl border border-border bg-white p-5 text-sm text-muted shadow-soft">
+              <div className="hidden h-4 w-4 rounded-full border-2 border-accent bg-background md:block" />
+              <div className="box rounded-2xl border border-border bg-surface p-5 text-sm text-muted shadow-soft">
                 {item.summary}
               </div>
             </div>

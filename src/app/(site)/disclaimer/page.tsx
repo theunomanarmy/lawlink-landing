@@ -5,7 +5,7 @@
 export default function DisclaimerPage() {
   return (
     <main>
-      <section className="full-width-section bg-slate-100">
+      <section className="full-width-section bg-background">
         <div className="section-content">
           <div className="mx-auto max-w-3xl space-y-6 px-4">
             <h1 className="text-4xl font-semibold tracking-tight">Professional Disclaimer</h1>

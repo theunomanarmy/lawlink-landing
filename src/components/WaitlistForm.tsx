@@ -58,7 +58,7 @@ export default function WaitlistForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-4 rounded-2xl border border-border bg-white p-6 shadow-soft">
+    <form onSubmit={handleSubmit} className="grid gap-4 rounded-2xl border border-border bg-surface p-6 shadow-soft">
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-2 text-sm font-semibold text-foreground">
           First name
@@ -148,7 +148,7 @@ export default function WaitlistForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-70"
+        className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-[#8b5a3c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-70"
       >
         {status === "sending" ? "Sending…" : "Send details"}
       </button>

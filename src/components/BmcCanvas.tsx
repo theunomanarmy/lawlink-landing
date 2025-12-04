@@ -124,12 +124,12 @@ export default function BmcCanvas() {
           A concise look at how LawLink creates, delivers, and captures value—ready to explore and download soon.
         </p>
       </header>
-      <div className="rounded-2xl border border-border bg-white p-6 shadow-soft">
+      <div className="rounded-2xl border border-border bg-surface p-6 shadow-soft">
         <CanvasSvg className="h-auto w-full" />
         <div className="mt-6 flex justify-end">
           <button
             type="button"
-            className="rounded-full border border-border px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            className="rounded-full border border-accent px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
             onClick={() => setIsExpanded(true)}
           >
             Expand & Download PNG
@@ -144,14 +144,14 @@ export default function BmcCanvas() {
           aria-modal="true"
           aria-labelledby="bmc-modal-title"
         >
-          <div className="max-h-[90vh] w-full max-w-5xl overflow-auto rounded-2xl border border-border bg-white p-6 shadow-soft">
+          <div className="max-h-[90vh] w-full max-w-5xl overflow-auto rounded-2xl border border-border bg-surface p-6 shadow-soft">
             <div className="flex items-center justify-between gap-4">
               <h3 id="bmc-modal-title" className="text-xl font-semibold text-foreground">
                 LawLink Business Model Canvas
               </h3>
               <button
                 type="button"
-                className="rounded-full border border-border px-3 py-1 text-sm font-medium text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                className="rounded-full border border-accent px-3 py-1 text-sm font-medium text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                 onClick={() => setIsExpanded(false)}
               >
                 Close
@@ -160,7 +160,7 @@ export default function BmcCanvas() {
             <p className="mt-2 text-sm text-muted">
               PNG export is coming soon. For now, review the expanded canvas here.
             </p>
-            <div className="mt-4 rounded-2xl border border-border bg-white p-4">
+            <div className="mt-4 rounded-2xl border border-border bg-surface p-4">
               <CanvasSvg className="h-auto w-full" />
             </div>
           </div>

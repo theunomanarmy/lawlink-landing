@@ -239,7 +239,7 @@ export default function BookingDialog({ lawyer, open, onOpenChange }: BookingDia
                   onChange={handleFileChange}
                   className="text-sm text-muted"
                 />
-                <span className="text-xs text-neutral-500">{attachmentInfo}</span>
+                <span className="text-xs text-muted">{attachmentInfo}</span>
               </label>
 
               {status !== "idle" ? (
@@ -252,7 +252,7 @@ export default function BookingDialog({ lawyer, open, onOpenChange }: BookingDia
                 <Dialog.Close asChild>
                   <button
                     type="button"
-                    className="rounded-full border border-border px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                    className="rounded-full border border-accent px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                   >
                     Cancel
                   </button>
@@ -260,7 +260,7 @@ export default function BookingDialog({ lawyer, open, onOpenChange }: BookingDia
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-white shadow-soft transition hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-70"
+                  className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-[#8b5a3c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   {status === "sending" ? "Sending…" : "Submit booking"}
                 </button>

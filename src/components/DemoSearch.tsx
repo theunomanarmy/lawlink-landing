@@ -117,7 +117,7 @@ export default function DemoSearch() {
         </p>
       </header>
 
-      <div className="rounded-2xl border border-border bg-white p-6 shadow-soft">
+      <div className="rounded-2xl border border-border bg-surface p-6 shadow-soft">
         <div className="grid gap-6 md:grid-cols-3">
           <label className="flex flex-col gap-2 text-left text-sm font-semibold text-foreground">
             <span>Location</span>
@@ -194,7 +194,7 @@ export default function DemoSearch() {
           <div className="mt-8 flex justify-center">
             <button
               type="button"
-              className="rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              className="rounded-full border border-accent px-5 py-3 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               onClick={() => {
                 const next = !showMore;
                 setShowMore(next);
@@ -209,7 +209,7 @@ export default function DemoSearch() {
         <div className="mt-6 flex justify-center">
           <Link
             href="/lawyers"
-            className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background shadow-soft transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:shadow-md hover:bg-[#8b5a3c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             View all lawyers with portfolios
           </Link>

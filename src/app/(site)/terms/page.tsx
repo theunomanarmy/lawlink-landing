@@ -5,7 +5,7 @@
 export default function TermsPage() {
   return (
     <main>
-      <section className="full-width-section bg-gray-50">
+      <section className="full-width-section bg-background">
         <div className="section-content">
           <div className="mx-auto max-w-3xl space-y-6 px-4">
             <h1 className="text-4xl font-semibold tracking-tight">Terms of Service</h1>

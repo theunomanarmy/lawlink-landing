@@ -33,7 +33,7 @@ export default function Navbar() {
           ))}
           <a
             href={waitlistHref}
-            className="rounded-full bg-foreground px-4 py-2 text-background shadow-soft transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            className="rounded-full bg-accent px-4 py-2 text-white shadow-soft transition hover:bg-[#8b5a3c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             Join the Waitlist
           </a>
@@ -65,7 +65,7 @@ export default function Navbar() {
             ))}
             <a
               href={waitlistHref}
-              className="rounded-md bg-foreground px-3 py-2 text-center text-background focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              className="rounded-md bg-accent px-3 py-2 text-center text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent hover:bg-[#8b5a3c]"
               onClick={closeMenu}
             >
               Join the Waitlist

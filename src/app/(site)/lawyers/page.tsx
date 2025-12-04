@@ -20,13 +20,13 @@ function PortfolioList({ portfolio }: { portfolio: PortfolioItem[] }) {
   }
 
   return (
-    <div className="mt-6 rounded-xl bg-slate-50/80 p-4 ring-1 ring-border/60">
+    <div className="mt-6 rounded-xl bg-surface/80 p-4 ring-1 ring-border/60">
       <p className="text-sm font-semibold text-foreground">Portfolio highlights</p>
       <ul className="mt-3 space-y-3">
         {portfolio.map((item, index) => (
           <li
             key={`${item.title}-${index}`}
-            className="rounded-lg bg-white/80 p-3 shadow-soft ring-1 ring-border/60"
+            className="rounded-lg bg-surface/80 p-3 shadow-soft ring-1 ring-border/60"
           >
             <div className="flex items-start justify-between gap-3">
               <div>
@@ -36,7 +36,7 @@ function PortfolioList({ portfolio }: { portfolio: PortfolioItem[] }) {
               {item.year ? <span className="text-xs text-muted">{item.year}</span> : null}
             </div>
             {item.outcome ? (
-              <p className="mt-2 text-xs font-semibold text-emerald-700">Outcome: {item.outcome}</p>
+              <p className="mt-2 text-xs font-semibold text-accent">Outcome: {item.outcome}</p>
             ) : null}
           </li>
         ))}
@@ -49,7 +49,7 @@ function LawyerRow({ lawyer }: { lawyer: Lawyer }) {
   const portfolio = lawyer.portfolio ?? [];
 
   return (
-    <article className="rounded-2xl border border-border/70 bg-white/95 p-6 shadow-soft transition hover:-translate-y-0.5 hover:shadow-lg">
+    <article className="rounded-2xl border border-border/70 bg-surface/95 p-6 shadow-soft transition hover:-translate-y-0.5 hover:shadow-lg">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="space-y-2">
           <p className="text-xs font-semibold uppercase tracking-wide text-muted">
@@ -61,12 +61,12 @@ function LawyerRow({ lawyer }: { lawyer: Lawyer }) {
               {lawyer.specialty}
             </span>
             {lawyer.verified ? (
-              <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+              <span className="inline-flex items-center gap-1 rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent">
                 <BadgeCheck size={14} />
                 Verified
               </span>
             ) : (
-              <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">
+              <span className="rounded-full bg-background px-3 py-1 text-xs font-semibold text-muted">
                 Pending verification
               </span>
             )}
@@ -76,8 +76,8 @@ function LawyerRow({ lawyer }: { lawyer: Lawyer }) {
           </p>
         </div>
         <div className="flex gap-3 text-sm font-semibold text-foreground">
-          <span className="rounded-full bg-neutral-100 px-3 py-2">Available</span>
-          <span className="rounded-full bg-neutral-100 px-3 py-2">Responds in &lt;24h</span>
+          <span className="rounded-full bg-surface/80 px-3 py-2">Available</span>
+          <span className="rounded-full bg-surface/80 px-3 py-2">Responds in &lt;24h</span>
         </div>
       </div>
 
@@ -104,7 +104,7 @@ export default function LawyersPage() {
   const sortedLawyers = [...lawyers].sort((a, b) => a.name.localeCompare(b.name));
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-zinc-100">
+    <main className="min-h-screen bg-gradient-to-b from-background via-[#080607] to-[#050304]">
       <Navbar />
       <section className="container mx-auto px-4 pb-16 pt-28">
         <div className="flex items-center justify-between gap-4">
@@ -120,7 +120,7 @@ export default function LawyersPage() {
           </div>
           <Link
             href="/#demo"
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground shadow-soft transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            className="inline-flex items-center gap-2 rounded-full border border-accent bg-background px-4 py-2 text-sm font-semibold text-foreground shadow-soft transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             <ArrowLeft size={16} />
             Back to demo

@@ -56,7 +56,7 @@ export default function Pricing() {
       </div>
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {tiers.map((tier) => (
-          <div key={tier.name} className="flex flex-col rounded-2xl border border-border bg-white p-6 shadow-soft">
+          <div key={tier.name} className="box flex flex-col rounded-2xl border border-border bg-surface p-6 shadow-soft">
             <h3 className="text-xl font-semibold">{tier.name}</h3>
             <p className="mt-2 text-2xl font-semibold text-foreground">{tier.price}</p>
             <ul className="mt-4 space-y-2 text-sm text-muted">
@@ -69,7 +69,7 @@ export default function Pricing() {
             </ul>
             <a
               href={buildMailto(tier.name)}
-              className="mt-6 inline-flex items-center justify-center rounded-full border border-border px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              className="mt-6 inline-flex items-center justify-center rounded-full border border-accent px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               onClick={() => track("pricing_cta_click", { plan: tier.name })}
             >
               Talk to the team

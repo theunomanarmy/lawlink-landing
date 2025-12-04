@@ -79,7 +79,7 @@ export default function LawyerProfileCard({ lawyer, className, onView }: LawyerP
         <div className="mt-5 flex justify-end">
           <button
             type="button"
-            className="rounded-full border border-border px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            className="rounded-full border border-accent px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
             onClick={handleBookClick}
           >
             Book
