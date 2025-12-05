@@ -94,9 +94,9 @@ main {
   background-color: #ffffff;
 }
 
-/* 3rd, 6th, 9th... = light brown background */
+/* 3rd, 6th, 9th... = darker brown background */
 .app-section:nth-of-type(3n) {
-  background-color: #c8a97e; /* lighter brown */
+  background-color: #8b6f47; /* darker brown */
 }
 
 /* Text should be dark in white sections */
@@ -126,6 +126,25 @@ main {
   background-color: #ffffff;
   color: #111111;
   border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+/* Brown section text: white for readability */
+.app-section:nth-of-type(3n) h1,
+.app-section:nth-of-type(3n) h2,
+.app-section:nth-of-type(3n) h3,
+.app-section:nth-of-type(3n) h4,
+.app-section:nth-of-type(3n) h5,
+.app-section:nth-of-type(3n) h6,
+.app-section:nth-of-type(3n) p,
+.app-section:nth-of-type(3n) li {
+  color: #ffffff;
+}
+
+/* Boxes/cards in brown sections should match the darker brown background */
+.app-section:nth-of-type(3n) .box,
+.app-section:nth-of-type(3n) .card {
+  background-color: #8b6f47; /* same as section */
+  color: #ffffff;            /* readable white text */
 }
 
 /* Utility helpers */
