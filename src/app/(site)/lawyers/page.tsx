@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowLeft, BadgeCheck } from "lucide-react";
+import { ArrowLeft, BadgeCheck, FileText, MessageSquare, Calendar, Search } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -70,11 +70,44 @@ export default function LawyersPage() {
             <div className="space-y-2">
               <p className="text-xs font-semibold uppercase tracking-wide text-accent">Live directory</p>
               <h1 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
-                Find a Lawyer
+                Find Legal Help
               </h1>
               <p className="max-w-3xl text-base text-muted">
-                Browse verified lawyers and explore their expertise and case experience.
+                Browse our live directory of verified lawyers with fully transparent portfolios, secure communication, and integrated booking systems.
               </p>
+            </div>
+          </div>
+
+          {/* Features Highlight */}
+          <div className="rounded-xl border border-border/70 bg-surface/95 p-6 shadow-soft mb-6">
+            <div className="grid gap-4 md:grid-cols-3">
+              <div className="flex items-start gap-3">
+                <span className="rounded-full bg-accent-soft p-2 mt-1">
+                  <FileText className="h-5 w-5 text-accent" />
+                </span>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Transparent Portfolios</h3>
+                  <p className="text-sm text-muted">View credentials, case distribution, and practice areas for each lawyer.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="rounded-full bg-accent-soft p-2 mt-1">
+                  <MessageSquare className="h-5 w-5 text-accent" />
+                </span>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Secure Chats</h3>
+                  <p className="text-sm text-muted">Connect with lawyers through encrypted messaging (coming soon).</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="rounded-full bg-accent-soft p-2 mt-1">
+                  <Calendar className="h-5 w-5 text-accent" />
+                </span>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Booking System</h3>
+                  <p className="text-sm text-muted">Schedule consultations directly through our integrated platform.</p>
+                </div>
+              </div>
             </div>
           </div>
 

@@ -5,6 +5,8 @@ import HowItWorks from "@/components/HowItWorks";
 import StoryBlocks from "@/components/StoryBlocks";
 import WhyUsInvest from "@/components/WhyUsInvest";
 import Feedback from "@/components/Feedback";
+import LegalClients from "@/components/LegalClients";
+import ForLawyers from "@/components/ForLawyers";
 import Footer from "@/components/Footer";
 
 export default function Page() {
@@ -34,6 +36,16 @@ export default function Page() {
       <section className="app-section">
         <div className="section-content">
           <WhyUsInvest />
+        </div>
+      </section>
+      <section className="app-section">
+        <div className="section-content">
+          <LegalClients />
+        </div>
+      </section>
+      <section className="app-section">
+        <div className="section-content">
+          <ForLawyers />
         </div>
       </section>
       <section className="app-section">
