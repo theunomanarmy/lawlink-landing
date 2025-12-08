@@ -31,7 +31,11 @@ export async function DELETE(
 
     // Delete file from filesystem
     try {
-      const filePath = join(process.cwd(), "public", document.fileUrl);
+      // Strip leading slash from fileUrl to ensure proper path joining
+      const fileUrl = document.fileUrl.startsWith("/") 
+        ? document.fileUrl.slice(1) 
+        : document.fileUrl;
+      const filePath = join(process.cwd(), "public", fileUrl);
       await unlink(filePath);
     } catch (error) {
       console.warn("Failed to delete file:", error);

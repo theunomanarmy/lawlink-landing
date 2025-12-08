@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CaseDistributionPieChart from "@/components/CaseDistributionPieChart";
 import Link from "next/link";
-import { Edit, Upload, Trash2, Plus } from "lucide-react";
+import { Edit, Upload, Trash2, Plus, Users } from "lucide-react";
 
 type PracticeArea = {
   id: string;
@@ -163,13 +163,22 @@ export default function LawyerDashboardClient({ profile: initialProfile }: Lawye
                   </p>
                 </div>
               </div>
-              <Link
-                href="/dashboard/lawyer/edit"
-                className="inline-flex items-center gap-2 rounded-full border border-accent bg-background px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft"
-              >
-                <Edit size={16} />
-                Edit Profile
-              </Link>
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/platform"
+                  className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-[#8b5a3c]"
+                >
+                  <Users size={16} />
+                  Lawlink Platform
+                </Link>
+                <Link
+                  href="/dashboard/lawyer/edit"
+                  className="inline-flex items-center gap-2 rounded-full border border-accent bg-background px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft"
+                >
+                  <Edit size={16} />
+                  Edit Profile
+                </Link>
+              </div>
             </div>
 
             {profile.overview && (

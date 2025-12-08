@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { isDatabaseAvailable } from "@/lib/prisma";
 
 // Public API routes that should bypass auth middleware entirely
 const publicApiRoutes = [
@@ -39,6 +40,12 @@ const authMiddleware = auth((req) => {
 
   // Protected routes require auth
   if (path.startsWith("/dashboard")) {
+    // Allow demo access to lawyer dashboard when database is unavailable
+    if (path.startsWith("/dashboard/lawyer") && !isDatabaseAvailable) {
+      // Allow access without session - page will handle demo user creation
+      return NextResponse.next();
+    }
+
     if (!session) {
       const loginUrl = new URL("/login", req.url);
       loginUrl.searchParams.set("callbackUrl", path);
@@ -51,6 +58,25 @@ const authMiddleware = auth((req) => {
     }
 
     if (path.startsWith("/dashboard/client") && userRole !== "CLIENT") {
+      return NextResponse.redirect(new URL("/dashboard", req.url));
+    }
+  }
+
+  // Platform routes - only for lawyers
+  if (path.startsWith("/platform")) {
+    // Allow demo access to platform when database is unavailable
+    if (!isDatabaseAvailable) {
+      // Allow access without session - page will handle demo user creation
+      return NextResponse.next();
+    }
+
+    if (!session) {
+      const loginUrl = new URL("/login", req.url);
+      loginUrl.searchParams.set("callbackUrl", path);
+      return NextResponse.redirect(loginUrl);
+    }
+
+    if (userRole !== "LAWYER") {
       return NextResponse.redirect(new URL("/dashboard", req.url));
     }
   }
@@ -83,6 +109,7 @@ export default async function middleware(req: NextRequest) {
 export const config = {
   matcher: [
     "/dashboard/:path*",
+    "/platform/:path*",
     "/login",
     "/register",
     "/api/:path*",

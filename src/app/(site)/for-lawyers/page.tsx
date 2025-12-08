@@ -39,7 +39,7 @@ export default async function ForLawyersPage() {
             ) : (
               <div className="pt-4 flex gap-4 justify-center">
                 <Link
-                  href="/register"
+                  href="/register?role=lawyer"
                   className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-white font-semibold shadow-soft transition hover:bg-[#8b5a3c] hover:shadow-glow"
                 >
                   Join as Lawyer
@@ -251,7 +251,7 @@ export default async function ForLawyersPage() {
             </p>
             {!isLawyer && (
               <Link
-                href="/register"
+                href="/register?role=lawyer"
                 className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-white font-semibold shadow-soft transition hover:bg-[#8b5a3c] hover:shadow-glow"
               >
                 Get Started

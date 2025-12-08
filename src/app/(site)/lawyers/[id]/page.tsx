@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CaseDistributionPieChart from "@/components/CaseDistributionPieChart";
-import { prisma } from "@/lib/prisma";
+import { prisma, isDatabaseAvailable } from "@/lib/prisma";
+import { demoData } from "@/lib/demo-data";
 import { BadgeCheck } from "lucide-react";
 
 export default async function LawyerProfilePage({
@@ -12,18 +13,43 @@ export default async function LawyerProfilePage({
 }) {
   const { id } = await params;
 
-  const lawyer = await prisma.lawyerProfile.findUnique({
-    where: { id },
-    include: {
-      practiceAreas: {
-        orderBy: { caseCount: "desc" },
+  // Use demo data if database is not available
+  let lawyer;
+  if (!isDatabaseAvailable || !prisma) {
+    lawyer = await demoData.lawyerProfile.findUnique({
+      where: { id },
+      include: {
+        practiceAreas: true,
+        documents: {
+          where: { isPublic: true },
+          orderBy: { uploadedAt: "desc" },
+        },
       },
-      documents: {
-        where: { isPublic: true },
-        orderBy: { uploadedAt: "desc" },
+    });
+
+    // Sort practice areas by caseCount desc
+    if (lawyer) {
+      lawyer = {
+        ...lawyer,
+        practiceAreas: [...lawyer.practiceAreas].sort(
+          (a, b) => b.caseCount - a.caseCount
+        ),
+      };
+    }
+  } else {
+    lawyer = await prisma.lawyerProfile.findUnique({
+      where: { id },
+      include: {
+        practiceAreas: {
+          orderBy: { caseCount: "desc" },
+        },
+        documents: {
+          where: { isPublic: true },
+          orderBy: { uploadedAt: "desc" },
+        },
       },
-    },
-  });
+    });
+  }
 
   if (!lawyer || !lawyer.isPublic || !lawyer.isApproved) {
     notFound();

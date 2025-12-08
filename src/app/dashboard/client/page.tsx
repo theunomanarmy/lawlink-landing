@@ -1,11 +1,16 @@
+import { redirect } from "next/navigation";
 import { requireClient } from "@/lib/auth-helpers";
-import { prisma } from "@/lib/prisma";
+import { prisma, isDatabaseAvailable } from "@/lib/prisma";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export default async function ClientDashboardPage() {
   const user = await requireClient();
+
+  if (!isDatabaseAvailable || !prisma) {
+    redirect("/register");
+  }
 
   const profile = await prisma.clientProfile.findUnique({
     where: { userId: user.id },

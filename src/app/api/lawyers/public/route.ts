@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { prisma, isDatabaseAvailable } from "@/lib/prisma";
+import { demoData } from "@/lib/demo-data";
 
 export async function GET(req: NextRequest) {
   try {
@@ -11,6 +12,57 @@ export async function GET(req: NextRequest) {
     const limit = parseInt(searchParams.get("limit") || "10");
     const skip = (page - 1) * limit;
 
+    // Use demo data if database is not available
+    if (!isDatabaseAvailable || !prisma) {
+      const where: any = {
+        isPublic: true,
+        isApproved: true,
+      };
+
+      if (location) {
+        where.location = { contains: location, mode: "insensitive" };
+      }
+
+      if (practiceArea) {
+        where.practiceArea = { contains: practiceArea, mode: "insensitive" };
+      }
+
+      if (search) {
+        where.OR = [
+          { fullName: { contains: search, mode: "insensitive" } },
+          { overview: { contains: search, mode: "insensitive" } },
+          { practiceArea: { contains: search, mode: "insensitive" } },
+        ];
+      }
+
+      const [lawyers, total] = await Promise.all([
+        demoData.lawyerProfile.findMany({
+          where,
+          include: {
+            practiceAreas: true,
+            documents: {
+              where: { isPublic: true },
+            },
+          },
+          skip,
+          take: limit,
+          orderBy: { createdAt: "desc" },
+        }),
+        demoData.lawyerProfile.count({ where }),
+      ]);
+
+      return NextResponse.json({
+        lawyers,
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit),
+        },
+      });
+    }
+
+    // Use database if available
     const where: any = {
       isPublic: true,
       isApproved: true,

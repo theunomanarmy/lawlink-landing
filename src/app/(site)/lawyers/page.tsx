@@ -34,10 +34,30 @@ export default function LawyersPage() {
   const [practiceAreaFilter, setPracticeAreaFilter] = useState("");
 
   useEffect(() => {
-    fetchLawyers();
-  }, [locationFilter, practiceAreaFilter]);
+    const loadLawyers = async () => {
+      setLoading(true);
+      try {
+        const params = new URLSearchParams();
+        if (search) params.append("search", search);
+        if (locationFilter) params.append("location", locationFilter);
+        if (practiceAreaFilter) params.append("practiceArea", practiceAreaFilter);
+
+        const response = await fetch(`/api/lawyers/public?${params.toString()}`);
+        if (response.ok) {
+          const data = await response.json();
+          setLawyers(data.lawyers || []);
+        }
+      } catch (error) {
+        console.error("Failed to fetch lawyers:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadLawyers();
+  }, [locationFilter, practiceAreaFilter, search]);
 
   const fetchLawyers = async () => {
+    setLoading(true);
     try {
       const params = new URLSearchParams();
       if (search) params.append("search", search);

@@ -34,7 +34,6 @@ export default function LoginPage() {
 
       // Redirect based on role - will be handled by middleware
       router.push("/dashboard");
-      router.refresh();
     } catch (err) {
       setError("Something went wrong. Please try again.");
       setLoading(false);

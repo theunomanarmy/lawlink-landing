@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import { useState, FormEvent, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
@@ -11,6 +11,7 @@ type Role = "LAWYER" | "CLIENT" | null;
 
 export default function RegisterPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [role, setRole] = useState<Role>(null);
   const [email, setEmail] = useState("");
@@ -33,6 +34,15 @@ export default function RegisterPage() {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Check for role query parameter on mount
+  useEffect(() => {
+    const roleParam = searchParams.get("role");
+    if (roleParam === "lawyer") {
+      setRole("LAWYER");
+      setStep(2);
+    }
+  }, [searchParams]);
 
   const practiceAreaOptions = [
     "Corporate",
@@ -120,7 +130,6 @@ export default function RegisterPage() {
 
       if (result?.ok) {
         router.push(role === "LAWYER" ? "/dashboard/lawyer" : "/dashboard/client");
-        router.refresh();
       } else {
         router.push("/login");
       }
