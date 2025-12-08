@@ -1,5 +1,6 @@
 import { requireLawyer } from "@/lib/auth-helpers";
-import { prisma } from "@/lib/prisma";
+import { prisma, isDatabaseAvailable } from "@/lib/prisma";
+import { demoData } from "@/lib/demo-data";
 import PlatformNavbar from "@/components/platform/PlatformNavbar";
 
 export default async function PlatformLayout({
@@ -9,9 +10,14 @@ export default async function PlatformLayout({
 }) {
   const user = await requireLawyer();
   
-  const profile = await prisma.lawyerProfile.findUnique({
-    where: { userId: user.id },
-  });
+  // Use demo data when database is unavailable
+  const profile = !isDatabaseAvailable || !prisma
+    ? await demoData.lawyerProfile.findUnique({
+        where: { id: "lawyer-01" },
+      })
+    : await prisma.lawyerProfile.findUnique({
+        where: { userId: user.id },
+      });
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-[#080607] to-[#050304]">
