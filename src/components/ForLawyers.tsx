@@ -17,12 +17,19 @@ export default function ForLawyers() {
           <p className="text-lg leading-relaxed text-muted">
             Access Lawlink AI for research and document assistance, stay updated with legal news, and discover opportunities for law students and legal tech consultants.
           </p>
-          <div className="pt-4">
+          <div className="pt-4 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/for-lawyers"
               className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-white font-semibold shadow-soft transition hover:bg-[#8b5a3c] hover:shadow-glow"
             >
               Learn More
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/dashboard/lawyer"
+              className="inline-flex items-center gap-2 rounded-full border border-accent bg-transparent px-6 py-3 text-accent font-semibold transition hover:bg-accent-soft hover:text-foreground"
+            >
+              Try Demo
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
