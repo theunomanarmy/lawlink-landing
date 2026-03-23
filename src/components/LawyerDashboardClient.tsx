@@ -165,13 +165,21 @@ export default function LawyerDashboardClient({ profile: initialProfile }: Lawye
                   </p>
                 </div>
               </div>
-              <Link
-                href="/dashboard/lawyer/edit"
-                className="inline-flex items-center gap-2 rounded-full border border-accent bg-background px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft"
-              >
-                <Edit size={16} />
-                Edit Profile
-              </Link>
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/platform"
+                  className="flex items-center gap-2 rounded-lg border border-border bg-surface px-4 py-2 text-sm font-medium text-muted hover:text-foreground hover:bg-accent-soft transition"
+                >
+                  <span>Open Platform</span>
+                </Link>
+                <Link
+                  href="/dashboard/lawyer/edit"
+                  className="inline-flex items-center gap-2 rounded-full border border-accent bg-background px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-accent-soft"
+                >
+                  <Edit size={16} />
+                  Edit Profile
+                </Link>
+              </div>
             </div>
 
             {profile.overview && (
