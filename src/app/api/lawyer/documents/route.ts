@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireLawyer } from "@/lib/auth-helpers";
 import { prisma } from "@/lib/prisma";
+import type { DocumentType } from "@prisma/client";
 import { writeFile, mkdir } from "fs/promises";
 import { join } from "path";
 
@@ -22,8 +23,8 @@ export async function GET() {
     });
 
     return NextResponse.json(documents);
-  } catch (error: any) {
-    if (error.message?.includes("redirect")) {
+  } catch (error: unknown) {
+    if (error instanceof Error && error.message?.includes("redirect")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     console.error("Documents fetch error:", error);
@@ -98,15 +99,15 @@ export async function POST(req: NextRequest) {
       data: {
         lawyerProfileId: lawyerProfile.id,
         fileUrl,
-        fileType: fileType as any || "OTHER",
+        fileType: (fileType as DocumentType) || "OTHER",
         title,
         description,
       },
     });
 
     return NextResponse.json(document, { status: 201 });
-  } catch (error: any) {
-    if (error.message?.includes("redirect")) {
+  } catch (error: unknown) {
+    if (error instanceof Error && error.message?.includes("redirect")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     console.error("Document upload error:", error);

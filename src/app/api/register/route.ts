@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
-import { signIn } from "next-auth/react";
 
 export async function POST(req: NextRequest) {
   try {
@@ -113,10 +112,10 @@ export async function POST(req: NextRequest) {
       },
       { status: 201 },
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Registration error:", error);
     return NextResponse.json(
-      { error: error.message || "Registration failed" },
+      { error: error instanceof Error ? error.message : "Registration failed" },
       { status: 500 },
     );
   }

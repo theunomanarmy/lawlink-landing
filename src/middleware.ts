@@ -77,7 +77,8 @@ export default async function middleware(req: NextRequest) {
   }
 
   // For all other routes, use the auth middleware
-  return authMiddleware(req);
+  // NextAuth middleware expects (req, event) but NextFetchEvent is not assignable to its expected context type
+  return (authMiddleware as (request: NextRequest) => Promise<Response>)(req);
 }
 
 export const config = {

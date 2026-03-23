@@ -42,8 +42,8 @@ export async function DELETE(
     });
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
-    if (error.message?.includes("redirect")) {
+  } catch (error: unknown) {
+    if (error instanceof Error && error.message?.includes("redirect")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     console.error("Document delete error:", error);

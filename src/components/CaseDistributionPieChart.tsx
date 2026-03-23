@@ -40,8 +40,8 @@ export default function CaseDistributionPieChart({
     percentage: total > 0 ? ((area.caseCount / total) * 100).toFixed(1) : 0,
   }));
 
-  const renderCustomLabel = ({ name, percentage }: any) => {
-    return `${name}: ${percentage}%`;
+  const renderCustomLabel = (props: { name?: string; percentage?: string | number }) => {
+    return `${props.name ?? ""}: ${props.percentage ?? 0}%`;
   };
 
   return (

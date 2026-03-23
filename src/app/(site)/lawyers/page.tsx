@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, BadgeCheck } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -33,11 +34,7 @@ export default function LawyersPage() {
   const [locationFilter, setLocationFilter] = useState("");
   const [practiceAreaFilter, setPracticeAreaFilter] = useState("");
 
-  useEffect(() => {
-    fetchLawyers();
-  }, [locationFilter, practiceAreaFilter]);
-
-  const fetchLawyers = async () => {
+  const fetchLawyers = useCallback(async () => {
     try {
       const params = new URLSearchParams();
       if (search) params.append("search", search);
@@ -54,7 +51,11 @@ export default function LawyersPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [search, locationFilter, practiceAreaFilter]);
+
+  useEffect(() => {
+    fetchLawyers();
+  }, [fetchLawyers]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -131,9 +132,11 @@ export default function LawyersPage() {
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div className="flex items-start gap-4 flex-1">
                       {lawyer.profilePhotoUrl && (
-                        <img
+                        <Image
                           src={lawyer.profilePhotoUrl}
                           alt={lawyer.fullName}
+                          width={64}
+                          height={64}
                           className="w-16 h-16 rounded-full object-cover"
                         />
                       )}

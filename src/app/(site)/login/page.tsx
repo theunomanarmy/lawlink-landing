@@ -35,7 +35,7 @@ export default function LoginPage() {
       // Redirect based on role - will be handled by middleware
       router.push("/dashboard");
       router.refresh();
-    } catch (err) {
+    } catch {
       setError("Something went wrong. Please try again.");
       setLoading(false);
     }
@@ -94,7 +94,7 @@ export default function LoginPage() {
             </form>
 
             <p className="mt-6 text-center text-sm text-muted">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link href="/register" className="text-accent hover:underline">
                 Register here
               </Link>

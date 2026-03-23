@@ -20,8 +20,8 @@ export async function GET() {
     });
 
     return NextResponse.json(practiceAreas);
-  } catch (error: any) {
-    if (error.message?.includes("redirect")) {
+  } catch (error: unknown) {
+    if (error instanceof Error && error.message?.includes("redirect")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     console.error("Practice areas fetch error:", error);
@@ -59,8 +59,8 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json(practiceArea, { status: 201 });
-  } catch (error: any) {
-    if (error.message?.includes("redirect")) {
+  } catch (error: unknown) {
+    if (error instanceof Error && error.message?.includes("redirect")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     console.error("Practice area create error:", error);

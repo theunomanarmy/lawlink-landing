@@ -80,7 +80,7 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      const payload: any = {
+      const payload: Record<string, unknown> = {
         email,
         password,
         role,
@@ -124,8 +124,8 @@ export default function RegisterPage() {
       } else {
         router.push("/login");
       }
-    } catch (err: any) {
-      setError(err.message || "Registration failed. Please try again.");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Registration failed. Please try again.");
       setLoading(false);
     }
   };

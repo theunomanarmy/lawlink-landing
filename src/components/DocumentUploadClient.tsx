@@ -45,8 +45,8 @@ export default function DocumentUploadClient() {
 
       router.push("/dashboard/lawyer");
       router.refresh();
-    } catch (err: any) {
-      setError(err.message || "Failed to upload document");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Failed to upload document");
       setLoading(false);
     }
   };

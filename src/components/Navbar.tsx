@@ -1,6 +1,6 @@
-﻿"use client";
+"use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { Menu, X } from "lucide-react";
@@ -11,8 +11,6 @@ const navLinks = [
   { href: "#for-clients", label: "why" },
   { href: "#feedback", label: "Feedback & contact" },
 ];
-
-const waitlistHref = "mailto:hello@lawlink.ai?subject=LawLink%20Waitlist";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CaseDistributionPieChart from "@/components/CaseDistributionPieChart";
@@ -20,7 +20,7 @@ type Document = {
   description: string | null;
   fileUrl: string;
   fileType: string;
-  uploadedAt: string;
+  uploadedAt: string | Date;
 };
 
 type LawyerProfile = {
@@ -33,6 +33,7 @@ type LawyerProfile = {
   yearsExperience: number | null;
   languages: string[];
   isPublic: boolean;
+  isApproved?: boolean;
   practiceAreas: PracticeArea[];
   documents: Document[];
 };
@@ -42,7 +43,6 @@ type LawyerDashboardClientProps = {
 };
 
 export default function LawyerDashboardClient({ profile: initialProfile }: LawyerDashboardClientProps) {
-  const router = useRouter();
   const [profile, setProfile] = useState(initialProfile);
   const [practiceAreas, setPracticeAreas] = useState(profile.practiceAreas);
   const [documents, setDocuments] = useState(profile.documents);
@@ -142,9 +142,11 @@ export default function LawyerDashboardClient({ profile: initialProfile }: Lawye
             <div className="flex items-start justify-between mb-6">
               <div className="flex items-start gap-4">
                 {profile.profilePhotoUrl && (
-                  <img
+                  <Image
                     src={profile.profilePhotoUrl}
                     alt={profile.fullName}
+                    width={80}
+                    height={80}
                     className="w-20 h-20 rounded-full object-cover"
                   />
                 )}

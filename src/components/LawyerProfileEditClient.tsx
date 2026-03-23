@@ -82,8 +82,8 @@ export default function LawyerProfileEditClient({ profile: initialProfile }: Law
 
       router.push("/dashboard/lawyer");
       router.refresh();
-    } catch (err: any) {
-      setError(err.message || "Failed to update profile");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Failed to update profile");
       setLoading(false);
     }
   };
@@ -128,6 +128,7 @@ export default function LawyerProfileEditClient({ profile: initialProfile }: Law
                 <label className="block text-sm font-medium mb-2">Profile Photo</label>
                 <div className="flex items-center gap-4">
                   {photoPreview && (
+                    /* eslint-disable-next-line @next/next/no-img-element -- blob URLs not supported by next/image */
                     <img
                       src={photoPreview}
                       alt="Profile preview"

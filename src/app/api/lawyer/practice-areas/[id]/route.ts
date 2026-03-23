@@ -38,8 +38,8 @@ export async function PATCH(
     });
 
     return NextResponse.json(updated);
-  } catch (error: any) {
-    if (error.message?.includes("redirect")) {
+  } catch (error: unknown) {
+    if (error instanceof Error && error.message?.includes("redirect")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     console.error("Practice area update error:", error);
@@ -77,8 +77,8 @@ export async function DELETE(
     });
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
-    if (error.message?.includes("redirect")) {
+  } catch (error: unknown) {
+    if (error instanceof Error && error.message?.includes("redirect")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     console.error("Practice area delete error:", error);

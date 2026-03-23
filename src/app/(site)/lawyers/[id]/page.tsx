@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CaseDistributionPieChart from "@/components/CaseDistributionPieChart";
@@ -37,9 +38,11 @@ export default async function LawyerProfilePage({
           <div className="rounded-2xl border border-border/70 bg-surface/95 p-8 shadow-soft mb-8">
             <div className="flex items-start gap-6 mb-6">
               {lawyer.profilePhotoUrl && (
-                <img
+                <Image
                   src={lawyer.profilePhotoUrl}
                   alt={lawyer.fullName}
+                  width={96}
+                  height={96}
                   className="w-24 h-24 rounded-full object-cover"
                 />
               )}
