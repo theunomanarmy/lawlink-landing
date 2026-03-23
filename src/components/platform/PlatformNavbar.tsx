@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
-import { Home, Newspaper, Users, Calendar, FileText, BarChart3, Bot, LogOut, User } from "lucide-react";
+import { Home, Newspaper, Users, Calendar, FileText, BarChart3, LogOut, User } from "lucide-react";
 
 type LawyerProfile = {
   id: string;
@@ -22,7 +22,6 @@ const navItems = [
   { href: "/platform/events", label: "Events", icon: Calendar },
   { href: "/platform/articles", label: "Articles", icon: FileText },
   { href: "/platform/research", label: "Research", icon: BarChart3 },
-  { href: "/platform/ai", label: "Lawlink AI", icon: Bot },
 ];
 
 export default function PlatformNavbar({ profile }: PlatformNavbarProps) {

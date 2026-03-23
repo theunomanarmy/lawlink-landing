@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Users, Briefcase, Newspaper, Brain, GraduationCap, Code, ArrowRight } from "lucide-react";
+import { Users, Briefcase, Newspaper, GraduationCap, Code, ArrowRight } from "lucide-react";
 
 export default function ForLawyers() {
   return (
@@ -15,7 +15,7 @@ export default function ForLawyers() {
             Join a dedicated platform designed for legal professionals. Connect with peers, collaborate on projects, and grow your practice.
           </p>
           <p className="text-lg leading-relaxed text-muted">
-            Access Lawlink AI for research and document assistance, stay updated with legal news, and discover opportunities for law students and legal tech consultants.
+            Stay updated with legal news, and discover opportunities for law students and legal tech consultants.
           </p>
           <div className="pt-4 flex flex-col gap-3 sm:flex-row">
             <Link
@@ -65,15 +65,6 @@ export default function ForLawyers() {
                 <div>
                   <span className="font-semibold text-foreground">Articles & News</span>
                   <p className="text-sm mt-1">Stay informed with the latest legal industry updates.</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-1 rounded-full bg-accent-soft p-2">
-                  <Brain className="h-4 w-4 text-accent" />
-                </span>
-                <div>
-                  <span className="font-semibold text-foreground">Lawlink AI</span>
-                  <p className="text-sm mt-1">AI-powered tools for research, summarization, and proofreading.</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
