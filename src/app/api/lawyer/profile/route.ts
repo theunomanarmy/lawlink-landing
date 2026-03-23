@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireLawyer } from "@/lib/auth-helpers";
 import { prisma } from "@/lib/prisma";
 import type { Prisma } from "@prisma/client";
-import { writeFile, mkdir } from "fs/promises";
-import { join } from "path";
+import { uploadFileToStorage } from "@/lib/supabase-storage";
 
 export async function GET() {
   try {
@@ -61,17 +60,8 @@ export async function PATCH(req: NextRequest) {
         return NextResponse.json({ error: "File too large" }, { status: 400 });
       }
 
-      const bytes = await photo.arrayBuffer();
-      const buffer = Buffer.from(bytes);
-
-      const uploadDir = process.env.UPLOAD_DIR || "./public/uploads";
-      const fileName = `profile-${user.id}-${Date.now()}.${photo.name.split(".").pop()}`;
-      const filePath = join(process.cwd(), uploadDir, fileName);
-
-      await mkdir(join(process.cwd(), uploadDir), { recursive: true });
-      await writeFile(filePath, buffer);
-
-      profilePhotoUrl = `/uploads/${fileName}`;
+      const fileName = `profiles/${user.id}-${Date.now()}.${photo.name.split('.').pop()}`
+      profilePhotoUrl = await uploadFileToStorage('lawlink-documents', fileName, photo)
     }
 
     const updateData: Prisma.LawyerProfileUpdateInput = {
